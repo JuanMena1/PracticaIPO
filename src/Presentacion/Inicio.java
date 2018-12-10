@@ -30,6 +30,8 @@ import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Inicio {
 
@@ -145,6 +147,7 @@ public class Inicio {
 		panel.add(btnOfertasYMens, gbc_btnOfertasYMens);
 
 		btnProductos = new JButton("Productos");
+		btnProductos.addActionListener(new BtnProductosActionListener());
 		GridBagConstraints gbc_btnProductos = new GridBagConstraints();
 		gbc_btnProductos.insets = new Insets(0, 0, 5, 5);
 		gbc_btnProductos.gridx = 3;
@@ -198,4 +201,10 @@ public class Inicio {
 		menuBar.add(mnAyuda);
 	}
 
+	private class BtnProductosActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			new Principal().getFrame().setVisible(true);
+			frmInicio.dispose();
+		}
+	}
 }
