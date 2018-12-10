@@ -154,6 +154,10 @@ public class Principal {
 	public JFrame getFrame() {
 		return frame;
 	}
+	
+	public JTabbedPane getTabbedPane() {
+		return tabbedPane;
+	}
 
 	/**
 	 * Initialize the contents of the frame.

@@ -56,6 +56,7 @@ public class Inicio {
 	private JRadioButtonMenuItem rdbtnmntmNormal;
 	private JRadioButtonMenuItem rdbtnmntmGrande;
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
+	private Principal PrincipalWin;
 
 	/**
 	 * Launch the application.
@@ -126,6 +127,7 @@ public class Inicio {
 		panel.add(lblInfo, gbc_lblInfo);
 
 		btnPedidos = new JButton("Pedidos");
+		btnPedidos.addActionListener(new BtnPedidosActionListener());
 		GridBagConstraints gbc_btnPedidos = new GridBagConstraints();
 		gbc_btnPedidos.insets = new Insets(0, 0, 5, 5);
 		gbc_btnPedidos.gridx = 1;
@@ -133,6 +135,7 @@ public class Inicio {
 		panel.add(btnPedidos, gbc_btnPedidos);
 
 		btnClientesVip = new JButton("Clientes VIP");
+		btnClientesVip.addActionListener(new BtnClientesVipActionListener());
 		GridBagConstraints gbc_btnClientesVip = new GridBagConstraints();
 		gbc_btnClientesVip.insets = new Insets(0, 0, 5, 5);
 		gbc_btnClientesVip.gridx = 3;
@@ -140,6 +143,7 @@ public class Inicio {
 		panel.add(btnClientesVip, gbc_btnClientesVip);
 
 		btnOfertasYMens = new JButton("Ofertas y menús");
+		btnOfertasYMens.addActionListener(new BtnOfertasYMensActionListener());
 		GridBagConstraints gbc_btnOfertasYMens = new GridBagConstraints();
 		gbc_btnOfertasYMens.insets = new Insets(0, 0, 5, 5);
 		gbc_btnOfertasYMens.gridx = 1;
@@ -163,6 +167,7 @@ public class Inicio {
 		panel.add(btnReparto, gbc_btnReparto);
 
 		btnCerrarSesin = new JButton("Cerrar sesión");
+		btnCerrarSesin.addActionListener(new BtnCerrarSesinActionListener());
 		GridBagConstraints gbc_btnCerrarSesin = new GridBagConstraints();
 		gbc_btnCerrarSesin.gridx = 4;
 		gbc_btnCerrarSesin.gridy = 4;
@@ -203,7 +208,68 @@ public class Inicio {
 
 	private class BtnProductosActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			new Principal().getFrame().setVisible(true);
+			if (PrincipalWin == null) {
+				PrincipalWin = new Principal();
+				PrincipalWin.getFrame().setVisible(true);
+				PrincipalWin.getTabbedPane().setSelectedIndex(1);
+				frmInicio.dispose();
+			} else {
+				PrincipalWin.getFrame().setVisible(true);
+				PrincipalWin.getTabbedPane().setSelectedIndex(1);
+				frmInicio.dispose();
+			}
+		}
+	}
+
+	private class BtnPedidosActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (PrincipalWin == null) {
+				PrincipalWin = new Principal();
+				PrincipalWin.getFrame().setVisible(true);
+				PrincipalWin.getTabbedPane().setSelectedIndex(2);
+				frmInicio.dispose();
+			} else {
+				PrincipalWin.getFrame().setVisible(true);
+				PrincipalWin.getTabbedPane().setSelectedIndex(2);
+				frmInicio.dispose();
+			}
+		}
+	}
+
+	private class BtnClientesVipActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (PrincipalWin == null) {
+				PrincipalWin = new Principal();
+				PrincipalWin.getFrame().setVisible(true);
+				PrincipalWin.getTabbedPane().setSelectedIndex(0);
+				frmInicio.dispose();
+			} else {
+				PrincipalWin.getFrame().setVisible(true);
+				PrincipalWin.getTabbedPane().setSelectedIndex(0);
+				frmInicio.dispose();
+			}
+		}
+	}
+
+	private class BtnOfertasYMensActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (PrincipalWin == null) {
+				PrincipalWin = new Principal();
+				PrincipalWin.getFrame().setVisible(true);
+				PrincipalWin.getTabbedPane().setSelectedIndex(3);
+				frmInicio.dispose();
+			} else {
+				PrincipalWin.getFrame().setVisible(true);
+				PrincipalWin.getTabbedPane().setSelectedIndex(3);
+				frmInicio.dispose();
+			}
+		}
+	}
+
+	private class BtnCerrarSesinActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+
+			new Login().getFrame().setVisible(true);
 			frmInicio.dispose();
 		}
 	}

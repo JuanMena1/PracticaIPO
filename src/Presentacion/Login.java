@@ -20,6 +20,9 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 public class Login {
+	/***************************************************************
+	 * El usuario y contraseña para entrar es admin en ambos campos*
+	 ***************************************************************/
 
 	private JFrame frameLogin;
 	private JPanel panel;
@@ -53,6 +56,10 @@ public class Login {
 	 */
 	public Login() {
 		initialize();
+	}
+	
+	public JFrame getFrame() {
+		return frameLogin;
 	}
 
 	/**
