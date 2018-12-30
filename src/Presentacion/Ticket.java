@@ -10,6 +10,8 @@ import java.awt.Insets;
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 public class Ticket {
 
@@ -24,6 +26,7 @@ public class Ticket {
 	private JLabel lblMtodoDePago;
 	private JLabel lblLeAtendi;
 	private JTable table;
+	private JButton btnImprimir;
 
 	/**
 	 * Launch the application.
@@ -58,9 +61,9 @@ public class Ticket {
 		frmTicket.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{33, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frmTicket.getContentPane().setLayout(gridBagLayout);
 		
 		lblCliente = new JLabel("Cliente:");
@@ -166,6 +169,15 @@ public class Ticket {
 		gbc_lblLeAtendi.gridx = 2;
 		gbc_lblLeAtendi.gridy = 10;
 		frmTicket.getContentPane().add(lblLeAtendi, gbc_lblLeAtendi);
+		
+		btnImprimir = new JButton("Imprimir");
+		btnImprimir.setIcon(new ImageIcon(Ticket.class.getResource("/Presentacion/printer.png")));
+		GridBagConstraints gbc_btnImprimir = new GridBagConstraints();
+		gbc_btnImprimir.gridwidth = 3;
+		gbc_btnImprimir.insets = new Insets(0, 0, 5, 5);
+		gbc_btnImprimir.gridx = 2;
+		gbc_btnImprimir.gridy = 12;
+		frmTicket.getContentPane().add(btnImprimir, gbc_btnImprimir);
 	}
 
 }

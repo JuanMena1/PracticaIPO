@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.ImageIcon;
 
 public class Login {
 	/***************************************************************
@@ -67,6 +68,7 @@ public class Login {
 	 */
 	private void initialize() {
 		frameLogin = new JFrame();
+		frameLogin.setResizable(false);
 		frameLogin.setTitle("Login");
 		frameLogin.setBounds(100, 100, 547, 353);
 		frameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -97,13 +99,15 @@ public class Login {
 		panel.add(passwordField);
 
 		btnEntrar = new JButton("Entrar");
+		btnEntrar.setIcon(new ImageIcon(Login.class.getResource("/Presentacion/sign-in.png")));
 		btnEntrar.addActionListener(new BtnEntrarActionListener());
-		btnEntrar.setBounds(112, 217, 115, 39);
+		btnEntrar.setBounds(93, 202, 153, 54);
 		panel.add(btnEntrar);
 
 		btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.setIcon(new ImageIcon(Login.class.getResource("/Presentacion/double-sided-eraser.png")));
 		btnLimpiar.addActionListener(new BtnLimpiarActionListener());
-		btnLimpiar.setBounds(294, 217, 115, 39);
+		btnLimpiar.setBounds(264, 202, 153, 54);
 		panel.add(btnLimpiar);
 
 		lblTitulo = new JLabel("Bienvenido a nuestro terminal de punto de venta");
@@ -122,7 +126,7 @@ public class Login {
 		public void actionPerformed(ActionEvent e) {
 			if (!(String.valueOf(tfUsuario.getText()).equals("admin"))
 					|| !(String.valueOf(passwordField.getPassword()).equals("admin"))) {
-				lblAviso.setBackground(Color.RED);
+				lblAviso.setForeground(Color.RED);
 				lblAviso.setText("Usuario o Contraseña incorrecto. Inténtelo de nuevo.");
 				lblAviso.setVisible(true);
 			} else {

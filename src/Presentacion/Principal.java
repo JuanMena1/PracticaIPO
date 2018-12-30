@@ -37,6 +37,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JCheckBox;
 import java.awt.SystemColor;
 import javax.swing.JFormattedTextField;
+import javax.swing.ImageIcon;
+import java.awt.FlowLayout;
 
 public class Principal {
 
@@ -68,7 +70,6 @@ public class Principal {
 	private JButton btnAadirClienteVip;
 	private JButton btnEditarClienteVip;
 	private JButton btnBorrarClienteVip;
-	private JPanel panel;
 	private JLabel lblId;
 	private JLabel lblNombre;
 	private JLabel lblApellidos;
@@ -127,6 +128,34 @@ public class Principal {
 	private JList listEnv;
 	private JLabel lblTotalClientesVip;
 	private JLabel lblEnviarA;
+	private JTabbedPane tabpnlCliente;
+	private JPanel Clientes;
+	private JPanel panel;
+	private JPanel tabHist;
+	private JPanel tabMenusOfertas;
+	private JTabbedPane tabpnlMenusyOfertas;
+	private JPanel tabMenu;
+	private JScrollPane scrollPane_4;
+	private JPanel panel_3;
+	private JLabel label;
+	private JTextField textField;
+	private JLabel lblPrecio_1;
+	private JFormattedTextField formattedTextField;
+	private JPanel panel_4;
+	private JLabel label_2;
+	private JLabel label_3;
+	private JScrollPane scrollPane_5;
+	private JScrollPane scrollPane_6;
+	private JButton button;
+	private JButton button_1;
+	private JButton button_2;
+	private JButton btnAadirMen;
+	private JButton btnEditarMen;
+	private JButton btnBorrarMen;
+	private JList list_3;
+	private JList list_4;
+	private JList list_5;
+	private JPanel tabReparto;
 
 	/**
 	 * Launch the application.
@@ -173,22 +202,28 @@ public class Principal {
 
 		tabClientes = new JPanel();
 		tabbedPane.addTab("Clientes", null, tabClientes, null);
-		GridBagLayout gbl_tabClientes = new GridBagLayout();
-		gbl_tabClientes.columnWidths = new int[]{0, 179, 52, 0, 0, 0, 0};
-		gbl_tabClientes.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_tabClientes.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_tabClientes.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		tabClientes.setLayout(gbl_tabClientes);
+		tabClientes.setLayout(new BorderLayout(0, 0));
+		
+		tabpnlCliente = new JTabbedPane(JTabbedPane.TOP);
+		tabClientes.add(tabpnlCliente);
+		
+		Clientes = new JPanel();
+		tabpnlCliente.addTab("Información personal", null, Clientes, null);
+		GridBagLayout gbl_Clientes = new GridBagLayout();
+		gbl_Clientes.columnWidths = new int[]{0, 62, 92, 46, 567, 40, 0};
+		gbl_Clientes.rowHeights = new int[]{0, 153, 0, 0, 0, 0, 0};
+		gbl_Clientes.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_Clientes.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		Clientes.setLayout(gbl_Clientes);
 		
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 2;
-		gbc_scrollPane.gridheight = 3;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane.gridx = 1;
 		gbc_scrollPane.gridy = 1;
-		tabClientes.add(scrollPane, gbc_scrollPane);
+		Clientes.add(scrollPane, gbc_scrollPane);
 		
 		list_1 = new JList();
 		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -205,117 +240,112 @@ public class Principal {
 		
 		panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.gridheight = 6;
+		gbc_panel.gridheight = 4;
 		gbc_panel.insets = new Insets(0, 0, 5, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 4;
 		gbc_panel.gridy = 1;
-		tabClientes.add(panel, gbc_panel);
+		Clientes.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{152, 52, 0, 246, 160, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[]{88, 78, 51, 0, 49, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 61, 0};
+		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
+		lblImagen = new JLabel("Imagen");
+		GridBagConstraints gbc_lblImagen = new GridBagConstraints();
+		gbc_lblImagen.gridwidth = 2;
+		gbc_lblImagen.gridheight = 5;
+		gbc_lblImagen.insets = new Insets(0, 0, 5, 5);
+		gbc_lblImagen.gridx = 0;
+		gbc_lblImagen.gridy = 1;
+		panel.add(lblImagen, gbc_lblImagen);
+		
 		lblId = new JLabel("ID:");
 		GridBagConstraints gbc_lblId = new GridBagConstraints();
-		gbc_lblId.anchor = GridBagConstraints.WEST;
 		gbc_lblId.insets = new Insets(0, 0, 5, 5);
-		gbc_lblId.gridx = 2;
+		gbc_lblId.gridx = 3;
 		gbc_lblId.gridy = 1;
 		panel.add(lblId, gbc_lblId);
 		
 		txtID = new JTextField();
 		GridBagConstraints gbc_txtID = new GridBagConstraints();
-		gbc_txtID.anchor = GridBagConstraints.NORTH;
-		gbc_txtID.insets = new Insets(0, 0, 5, 5);
 		gbc_txtID.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtID.gridx = 3;
+		gbc_txtID.insets = new Insets(0, 0, 5, 5);
+		gbc_txtID.gridx = 4;
 		gbc_txtID.gridy = 1;
 		panel.add(txtID, gbc_txtID);
 		txtID.setColumns(10);
 		
-		lblImagen = new JLabel("Imagen");
-		GridBagConstraints gbc_lblImagen = new GridBagConstraints();
-		gbc_lblImagen.gridheight = 4;
-		gbc_lblImagen.insets = new Insets(0, 0, 5, 5);
-		gbc_lblImagen.gridx = 0;
-		gbc_lblImagen.gridy = 2;
-		panel.add(lblImagen, gbc_lblImagen);
-		
 		lblNombre = new JLabel("Nombre:");
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
-		gbc_lblNombre.anchor = GridBagConstraints.WEST;
 		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNombre.gridx = 2;
+		gbc_lblNombre.gridx = 3;
 		gbc_lblNombre.gridy = 2;
 		panel.add(lblNombre, gbc_lblNombre);
 		
 		txtNombre = new JTextField();
 		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
-		gbc_txtNombre.anchor = GridBagConstraints.ABOVE_BASELINE;
-		gbc_txtNombre.insets = new Insets(0, 0, 5, 5);
 		gbc_txtNombre.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtNombre.gridx = 3;
+		gbc_txtNombre.insets = new Insets(0, 0, 5, 5);
+		gbc_txtNombre.gridx = 4;
 		gbc_txtNombre.gridy = 2;
 		panel.add(txtNombre, gbc_txtNombre);
 		txtNombre.setColumns(10);
 		
 		lblApellidos = new JLabel("Apellidos:");
 		GridBagConstraints gbc_lblApellidos = new GridBagConstraints();
-		gbc_lblApellidos.anchor = GridBagConstraints.WEST;
 		gbc_lblApellidos.insets = new Insets(0, 0, 5, 5);
-		gbc_lblApellidos.gridx = 2;
+		gbc_lblApellidos.gridx = 3;
 		gbc_lblApellidos.gridy = 3;
 		panel.add(lblApellidos, gbc_lblApellidos);
 		
 		txtApellidos = new JTextField();
 		GridBagConstraints gbc_txtApellidos = new GridBagConstraints();
-		gbc_txtApellidos.insets = new Insets(0, 0, 5, 5);
 		gbc_txtApellidos.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtApellidos.gridx = 3;
+		gbc_txtApellidos.insets = new Insets(0, 0, 5, 5);
+		gbc_txtApellidos.gridx = 4;
 		gbc_txtApellidos.gridy = 3;
 		panel.add(txtApellidos, gbc_txtApellidos);
 		txtApellidos.setColumns(10);
 		
 		lblTelfono = new JLabel("Teléfono:");
 		GridBagConstraints gbc_lblTelfono = new GridBagConstraints();
-		gbc_lblTelfono.anchor = GridBagConstraints.WEST;
 		gbc_lblTelfono.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTelfono.gridx = 2;
+		gbc_lblTelfono.gridx = 3;
 		gbc_lblTelfono.gridy = 4;
 		panel.add(lblTelfono, gbc_lblTelfono);
 		
 		txtTelefono = new JTextField();
 		GridBagConstraints gbc_txtTelefono = new GridBagConstraints();
-		gbc_txtTelefono.insets = new Insets(0, 0, 5, 5);
 		gbc_txtTelefono.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtTelefono.gridx = 3;
+		gbc_txtTelefono.insets = new Insets(0, 0, 5, 5);
+		gbc_txtTelefono.gridx = 4;
 		gbc_txtTelefono.gridy = 4;
 		panel.add(txtTelefono, gbc_txtTelefono);
 		txtTelefono.setColumns(10);
 		
 		lblDireccin = new JLabel("Dirección:");
 		GridBagConstraints gbc_lblDireccin = new GridBagConstraints();
-		gbc_lblDireccin.anchor = GridBagConstraints.WEST;
 		gbc_lblDireccin.insets = new Insets(0, 0, 5, 5);
-		gbc_lblDireccin.gridx = 2;
+		gbc_lblDireccin.gridx = 3;
 		gbc_lblDireccin.gridy = 5;
 		panel.add(lblDireccin, gbc_lblDireccin);
 		
 		txtDireccion = new JTextField();
 		GridBagConstraints gbc_txtDireccion = new GridBagConstraints();
+		gbc_txtDireccion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtDireccion.gridwidth = 2;
 		gbc_txtDireccion.insets = new Insets(0, 0, 5, 0);
-		gbc_txtDireccion.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtDireccion.gridx = 3;
+		gbc_txtDireccion.gridx = 4;
 		gbc_txtDireccion.gridy = 5;
 		panel.add(txtDireccion, gbc_txtDireccion);
 		txtDireccion.setColumns(10);
 		
 		lblFoto = new JLabel("Foto");
 		GridBagConstraints gbc_lblFoto = new GridBagConstraints();
+		gbc_lblFoto.gridwidth = 2;
 		gbc_lblFoto.insets = new Insets(0, 0, 5, 5);
 		gbc_lblFoto.gridx = 0;
 		gbc_lblFoto.gridy = 6;
@@ -323,57 +353,74 @@ public class Principal {
 		
 		lblCorreoElectrnico = new JLabel("Correo electrónico:");
 		GridBagConstraints gbc_lblCorreoElectrnico = new GridBagConstraints();
-		gbc_lblCorreoElectrnico.anchor = GridBagConstraints.WEST;
 		gbc_lblCorreoElectrnico.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCorreoElectrnico.gridx = 2;
+		gbc_lblCorreoElectrnico.gridx = 3;
 		gbc_lblCorreoElectrnico.gridy = 6;
 		panel.add(lblCorreoElectrnico, gbc_lblCorreoElectrnico);
 		
 		txtCorreo = new JTextField();
 		GridBagConstraints gbc_txtCorreo = new GridBagConstraints();
+		gbc_txtCorreo.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtCorreo.gridwidth = 2;
 		gbc_txtCorreo.insets = new Insets(0, 0, 5, 0);
-		gbc_txtCorreo.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtCorreo.gridx = 3;
+		gbc_txtCorreo.gridx = 4;
 		gbc_txtCorreo.gridy = 6;
 		panel.add(txtCorreo, gbc_txtCorreo);
 		txtCorreo.setColumns(10);
 		
 		lblVegetarianovegano = new JLabel("Vegetariano/Vegano:");
 		GridBagConstraints gbc_lblVegetarianovegano = new GridBagConstraints();
-		gbc_lblVegetarianovegano.anchor = GridBagConstraints.WEST;
 		gbc_lblVegetarianovegano.insets = new Insets(0, 0, 5, 5);
-		gbc_lblVegetarianovegano.gridx = 2;
+		gbc_lblVegetarianovegano.gridx = 3;
 		gbc_lblVegetarianovegano.gridy = 7;
 		panel.add(lblVegetarianovegano, gbc_lblVegetarianovegano);
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"No", "Vegetariano/a", "Vegano/a"}));
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.anchor = GridBagConstraints.WEST;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 3;
+		gbc_comboBox.gridx = 4;
 		gbc_comboBox.gridy = 7;
 		panel.add(comboBox, gbc_comboBox);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"No", "Vegetariano/a", "Vegano/a"}));
 		
 		lblAlrgenos_1 = new JLabel("Alérgenos:");
 		GridBagConstraints gbc_lblAlrgenos_1 = new GridBagConstraints();
-		gbc_lblAlrgenos_1.anchor = GridBagConstraints.WEST;
 		gbc_lblAlrgenos_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAlrgenos_1.gridx = 2;
+		gbc_lblAlrgenos_1.gridx = 3;
 		gbc_lblAlrgenos_1.gridy = 8;
 		panel.add(lblAlrgenos_1, gbc_lblAlrgenos_1);
 		
 		txtAlergenosC = new JTextField();
-		txtAlergenosC.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_txtAlergenosC = new GridBagConstraints();
+		gbc_txtAlergenosC.fill = GridBagConstraints.BOTH;
 		gbc_txtAlergenosC.gridwidth = 2;
 		gbc_txtAlergenosC.gridheight = 2;
-		gbc_txtAlergenosC.fill = GridBagConstraints.BOTH;
-		gbc_txtAlergenosC.gridx = 3;
+		gbc_txtAlergenosC.gridx = 4;
 		gbc_txtAlergenosC.gridy = 8;
 		panel.add(txtAlergenosC, gbc_txtAlergenosC);
+		txtAlergenosC.setHorizontalAlignment(SwingConstants.LEFT);
 		txtAlergenosC.setColumns(10);
+		
+		btnEditarClienteVip = new JButton("Editar cliente VIP");
+		GridBagConstraints gbc_btnEditarClienteVip = new GridBagConstraints();
+		gbc_btnEditarClienteVip.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnEditarClienteVip.anchor = GridBagConstraints.NORTH;
+		gbc_btnEditarClienteVip.insets = new Insets(0, 0, 5, 5);
+		gbc_btnEditarClienteVip.gridx = 1;
+		gbc_btnEditarClienteVip.gridy = 2;
+		Clientes.add(btnEditarClienteVip, gbc_btnEditarClienteVip);
+		btnEditarClienteVip.setIcon(null);
+		
+		btnBorrarClienteVip = new JButton("Borrar cliente VIP");
+		GridBagConstraints gbc_btnBorrarClienteVip = new GridBagConstraints();
+		gbc_btnBorrarClienteVip.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnBorrarClienteVip.anchor = GridBagConstraints.NORTH;
+		gbc_btnBorrarClienteVip.insets = new Insets(0, 0, 5, 5);
+		gbc_btnBorrarClienteVip.gridx = 1;
+		gbc_btnBorrarClienteVip.gridy = 3;
+		Clientes.add(btnBorrarClienteVip, gbc_btnBorrarClienteVip);
+		btnBorrarClienteVip.setIcon(null);
 		
 		btnAadirClienteVip = new JButton("Añadir cliente VIP");
 		GridBagConstraints gbc_btnAadirClienteVip = new GridBagConstraints();
@@ -381,23 +428,12 @@ public class Principal {
 		gbc_btnAadirClienteVip.insets = new Insets(0, 0, 5, 5);
 		gbc_btnAadirClienteVip.gridx = 1;
 		gbc_btnAadirClienteVip.gridy = 4;
-		tabClientes.add(btnAadirClienteVip, gbc_btnAadirClienteVip);
+		Clientes.add(btnAadirClienteVip, gbc_btnAadirClienteVip);
+		btnAadirClienteVip.setIcon(null);
 		
-		btnEditarClienteVip = new JButton("Editar cliente VIP");
-		GridBagConstraints gbc_btnEditarClienteVip = new GridBagConstraints();
-		gbc_btnEditarClienteVip.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnEditarClienteVip.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEditarClienteVip.gridx = 1;
-		gbc_btnEditarClienteVip.gridy = 5;
-		tabClientes.add(btnEditarClienteVip, gbc_btnEditarClienteVip);
-		
-		btnBorrarClienteVip = new JButton("Borrar cliente VIP");
-		GridBagConstraints gbc_btnBorrarClienteVip = new GridBagConstraints();
-		gbc_btnBorrarClienteVip.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnBorrarClienteVip.insets = new Insets(0, 0, 5, 5);
-		gbc_btnBorrarClienteVip.gridx = 1;
-		gbc_btnBorrarClienteVip.gridy = 6;
-		tabClientes.add(btnBorrarClienteVip, gbc_btnBorrarClienteVip);
+		tabHist = new JPanel();
+		tabHist.setName("");
+		tabpnlCliente.addTab("Hisotial de pedidos", null, tabHist, null);
 
 		tabProductos = new JPanel();
 		tabbedPane.addTab("Productos", null, tabProductos, null);
@@ -766,6 +802,7 @@ public class Principal {
 		panelProductos.add(chckbxCanjearPuntos, gbc_chckbxCanjearPuntos);
 		
 		btnMostrarTicket = new JButton("Mostrar ticket");
+		btnMostrarTicket.setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/invoice.png")));
 		GridBagConstraints gbc_btnMostrarTicket = new GridBagConstraints();
 		gbc_btnMostrarTicket.fill = GridBagConstraints.BOTH;
 		gbc_btnMostrarTicket.gridwidth = 3;
@@ -781,180 +818,367 @@ public class Principal {
 		gbc_btnEliminarProducto.gridx = 1;
 		gbc_btnEliminarProducto.gridy = 5;
 		panelProductos.add(btnEliminarProducto, gbc_btnEliminarProducto);
-
-		tabOfertas = new JPanel();
-		tabbedPane.addTab("Ofertas y menús", null, tabOfertas, null);
-		GridBagLayout gbl_tabOfertas = new GridBagLayout();
-		gbl_tabOfertas.columnWidths = new int[]{0, 0, 0, 109, 250, 228, 0};
-		gbl_tabOfertas.rowHeights = new int[]{0, 0, 0, 0, 0};
-		gbl_tabOfertas.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_tabOfertas.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		tabOfertas.setLayout(gbl_tabOfertas);
 		
-		scrollPane_3 = new JScrollPane();
-		GridBagConstraints gbc_scrollPane_3 = new GridBagConstraints();
-		gbc_scrollPane_3.gridwidth = 3;
-		gbc_scrollPane_3.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane_3.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane_3.gridx = 1;
-		gbc_scrollPane_3.gridy = 1;
-		tabOfertas.add(scrollPane_3, gbc_scrollPane_3);
+		tabMenusOfertas = new JPanel();
+		tabbedPane.addTab("Menús y ofertas", null, tabMenusOfertas, null);
 		
-		list_2 = new JList();
-		scrollPane_3.setViewportView(list_2);
+		tabpnlMenusyOfertas = new JTabbedPane(JTabbedPane.TOP);
+		tabMenusOfertas.add(tabpnlMenusyOfertas);
 		
-		pnlDetallesOf = new JPanel();
-		pnlDetallesOf.setBorder(new TitledBorder(null, "Detalles", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		GridBagConstraints gbc_pnlDetallesOf = new GridBagConstraints();
-		gbc_pnlDetallesOf.insets = new Insets(0, 0, 5, 5);
-		gbc_pnlDetallesOf.fill = GridBagConstraints.BOTH;
-		gbc_pnlDetallesOf.gridx = 4;
-		gbc_pnlDetallesOf.gridy = 1;
-		tabOfertas.add(pnlDetallesOf, gbc_pnlDetallesOf);
-		GridBagLayout gbl_pnlDetallesOf = new GridBagLayout();
-		gbl_pnlDetallesOf.columnWidths = new int[]{194, 0};
-		gbl_pnlDetallesOf.rowHeights = new int[]{53, 175, 42, 29, 0};
-		gbl_pnlDetallesOf.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_pnlDetallesOf.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		pnlDetallesOf.setLayout(gbl_pnlDetallesOf);
-		
-		lblDescripcin = new JLabel("Descripción:");
-		GridBagConstraints gbc_lblDescripcin = new GridBagConstraints();
-		gbc_lblDescripcin.fill = GridBagConstraints.BOTH;
-		gbc_lblDescripcin.insets = new Insets(0, 0, 5, 0);
-		gbc_lblDescripcin.gridx = 0;
-		gbc_lblDescripcin.gridy = 0;
-		pnlDetallesOf.add(lblDescripcin, gbc_lblDescripcin);
-		
-		txtDesc = new JTextField();
-		GridBagConstraints gbc_txtDesc = new GridBagConstraints();
-		gbc_txtDesc.fill = GridBagConstraints.BOTH;
-		gbc_txtDesc.insets = new Insets(0, 0, 5, 0);
-		gbc_txtDesc.gridx = 0;
-		gbc_txtDesc.gridy = 1;
-		pnlDetallesOf.add(txtDesc, gbc_txtDesc);
-		txtDesc.setColumns(10);
-		
-		lblValidaHasta = new JLabel("Válida hasta:");
-		GridBagConstraints gbc_lblValidaHasta = new GridBagConstraints();
-		gbc_lblValidaHasta.fill = GridBagConstraints.BOTH;
-		gbc_lblValidaHasta.insets = new Insets(0, 0, 5, 0);
-		gbc_lblValidaHasta.gridx = 0;
-		gbc_lblValidaHasta.gridy = 2;
-		pnlDetallesOf.add(lblValidaHasta, gbc_lblValidaHasta);
-		
-		ftxtValido = new JFormattedTextField();
-		ftxtValido.setMinimumSize(new Dimension(6, 10));
-		ftxtValido.setPreferredSize(new Dimension(6, 10));
-		GridBagConstraints gbc_ftxtValido = new GridBagConstraints();
-		gbc_ftxtValido.fill = GridBagConstraints.BOTH;
-		gbc_ftxtValido.gridx = 0;
-		gbc_ftxtValido.gridy = 3;
-		pnlDetallesOf.add(ftxtValido, gbc_ftxtValido);
-		
-		pnlEnvioOf = new JPanel();
-		pnlEnvioOf.setBorder(new TitledBorder(null, "Envio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		GridBagConstraints gbc_pnlEnvioOf = new GridBagConstraints();
-		gbc_pnlEnvioOf.insets = new Insets(0, 0, 5, 0);
-		gbc_pnlEnvioOf.fill = GridBagConstraints.BOTH;
-		gbc_pnlEnvioOf.gridx = 5;
-		gbc_pnlEnvioOf.gridy = 1;
-		tabOfertas.add(pnlEnvioOf, gbc_pnlEnvioOf);
-		GridBagLayout gbl_pnlEnvioOf = new GridBagLayout();
-		gbl_pnlEnvioOf.columnWidths = new int[]{0, 51, 0, 52, 0, 0};
-		gbl_pnlEnvioOf.rowHeights = new int[]{0, 0, 0, 0, 24, 0};
-		gbl_pnlEnvioOf.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_pnlEnvioOf.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		pnlEnvioOf.setLayout(gbl_pnlEnvioOf);
-		
-		lblTotalClientesVip = new JLabel("Total clientes VIP");
-		GridBagConstraints gbc_lblTotalClientesVip = new GridBagConstraints();
-		gbc_lblTotalClientesVip.anchor = GridBagConstraints.WEST;
-		gbc_lblTotalClientesVip.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTotalClientesVip.gridx = 0;
-		gbc_lblTotalClientesVip.gridy = 0;
-		pnlEnvioOf.add(lblTotalClientesVip, gbc_lblTotalClientesVip);
-		
-		lblEnviarA = new JLabel("Enviar a ");
-		GridBagConstraints gbc_lblEnviarA = new GridBagConstraints();
-		gbc_lblEnviarA.anchor = GridBagConstraints.WEST;
-		gbc_lblEnviarA.insets = new Insets(0, 0, 5, 0);
-		gbc_lblEnviarA.gridx = 4;
-		gbc_lblEnviarA.gridy = 0;
-		pnlEnvioOf.add(lblEnviarA, gbc_lblEnviarA);
-		
-		scrollPaneCVIP = new JScrollPane();
-		GridBagConstraints gbc_scrollPaneCVIP = new GridBagConstraints();
-		gbc_scrollPaneCVIP.gridwidth = 2;
-		gbc_scrollPaneCVIP.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPaneCVIP.fill = GridBagConstraints.BOTH;
-		gbc_scrollPaneCVIP.gridx = 0;
-		gbc_scrollPaneCVIP.gridy = 1;
-		pnlEnvioOf.add(scrollPaneCVIP, gbc_scrollPaneCVIP);
-		
-		listCVIP = new JList();
-		scrollPaneCVIP.setViewportView(listCVIP);
-		
-		scrollPaneEnv = new JScrollPane();
-		GridBagConstraints gbc_scrollPaneEnv = new GridBagConstraints();
-		gbc_scrollPaneEnv.gridwidth = 2;
-		gbc_scrollPaneEnv.insets = new Insets(0, 0, 5, 0);
-		gbc_scrollPaneEnv.fill = GridBagConstraints.BOTH;
-		gbc_scrollPaneEnv.gridx = 3;
-		gbc_scrollPaneEnv.gridy = 1;
-		pnlEnvioOf.add(scrollPaneEnv, gbc_scrollPaneEnv);
-		
-		listEnv = new JList();
-		scrollPaneEnv.setViewportView(listEnv);
-		
-		btnSeleccionar = new JButton("Seleccionar");
-		GridBagConstraints gbc_btnSeleccionar = new GridBagConstraints();
-		gbc_btnSeleccionar.gridwidth = 2;
-		gbc_btnSeleccionar.insets = new Insets(0, 0, 5, 5);
-		gbc_btnSeleccionar.gridx = 0;
-		gbc_btnSeleccionar.gridy = 2;
-		pnlEnvioOf.add(btnSeleccionar, gbc_btnSeleccionar);
-		
-		btnEliminar_1 = new JButton("Eliminar");
-		GridBagConstraints gbc_btnEliminar_1 = new GridBagConstraints();
-		gbc_btnEliminar_1.gridwidth = 2;
-		gbc_btnEliminar_1.insets = new Insets(0, 0, 5, 0);
-		gbc_btnEliminar_1.gridx = 3;
-		gbc_btnEliminar_1.gridy = 2;
-		pnlEnvioOf.add(btnEliminar_1, gbc_btnEliminar_1);
-		
-		btnEnviar = new JButton("Enviar");
-		GridBagConstraints gbc_btnEnviar = new GridBagConstraints();
-		gbc_btnEnviar.fill = GridBagConstraints.BOTH;
-		gbc_btnEnviar.gridheight = 2;
-		gbc_btnEnviar.gridwidth = 3;
-		gbc_btnEnviar.gridx = 1;
-		gbc_btnEnviar.gridy = 3;
-		pnlEnvioOf.add(btnEnviar, gbc_btnEnviar);
-		
-		btnAadirOferta = new JButton("Añadir oferta");
-		GridBagConstraints gbc_btnAadirOferta = new GridBagConstraints();
-		gbc_btnAadirOferta.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnAadirOferta.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAadirOferta.gridx = 1;
-		gbc_btnAadirOferta.gridy = 2;
-		tabOfertas.add(btnAadirOferta, gbc_btnAadirOferta);
-		
-		btnEditarOferta = new JButton("Editar oferta");
-		GridBagConstraints gbc_btnEditarOferta = new GridBagConstraints();
-		gbc_btnEditarOferta.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnEditarOferta.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEditarOferta.gridx = 2;
-		gbc_btnEditarOferta.gridy = 2;
-		tabOfertas.add(btnEditarOferta, gbc_btnEditarOferta);
-		
-		btnBorrarOferta = new JButton("Borrar oferta");
-		GridBagConstraints gbc_btnBorrarOferta = new GridBagConstraints();
-		gbc_btnBorrarOferta.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnBorrarOferta.insets = new Insets(0, 0, 5, 5);
-		gbc_btnBorrarOferta.gridx = 3;
-		gbc_btnBorrarOferta.gridy = 2;
-		tabOfertas.add(btnBorrarOferta, gbc_btnBorrarOferta);
+				tabOfertas = new JPanel();
+				tabpnlMenusyOfertas.addTab("Ofertas", null, tabOfertas, null);
+				GridBagLayout gbl_tabOfertas = new GridBagLayout();
+				gbl_tabOfertas.columnWidths = new int[]{0, 0, 0, 109, 250, 228, 0};
+				gbl_tabOfertas.rowHeights = new int[]{0, 391, 0, 0, 0};
+				gbl_tabOfertas.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+				gbl_tabOfertas.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+				tabOfertas.setLayout(gbl_tabOfertas);
+				
+				scrollPane_3 = new JScrollPane();
+				GridBagConstraints gbc_scrollPane_3 = new GridBagConstraints();
+				gbc_scrollPane_3.gridwidth = 3;
+				gbc_scrollPane_3.insets = new Insets(0, 0, 5, 5);
+				gbc_scrollPane_3.fill = GridBagConstraints.BOTH;
+				gbc_scrollPane_3.gridx = 1;
+				gbc_scrollPane_3.gridy = 1;
+				tabOfertas.add(scrollPane_3, gbc_scrollPane_3);
+				
+				list_2 = new JList();
+				scrollPane_3.setViewportView(list_2);
+				
+				pnlDetallesOf = new JPanel();
+				pnlDetallesOf.setBorder(new TitledBorder(null, "Detalles", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				GridBagConstraints gbc_pnlDetallesOf = new GridBagConstraints();
+				gbc_pnlDetallesOf.insets = new Insets(0, 0, 5, 5);
+				gbc_pnlDetallesOf.fill = GridBagConstraints.BOTH;
+				gbc_pnlDetallesOf.gridx = 4;
+				gbc_pnlDetallesOf.gridy = 1;
+				tabOfertas.add(pnlDetallesOf, gbc_pnlDetallesOf);
+				GridBagLayout gbl_pnlDetallesOf = new GridBagLayout();
+				gbl_pnlDetallesOf.columnWidths = new int[]{194, 0};
+				gbl_pnlDetallesOf.rowHeights = new int[]{53, 175, 42, 29, 0};
+				gbl_pnlDetallesOf.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+				gbl_pnlDetallesOf.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+				pnlDetallesOf.setLayout(gbl_pnlDetallesOf);
+				
+				lblDescripcin = new JLabel("Descripción:");
+				GridBagConstraints gbc_lblDescripcin = new GridBagConstraints();
+				gbc_lblDescripcin.fill = GridBagConstraints.BOTH;
+				gbc_lblDescripcin.insets = new Insets(0, 0, 5, 0);
+				gbc_lblDescripcin.gridx = 0;
+				gbc_lblDescripcin.gridy = 0;
+				pnlDetallesOf.add(lblDescripcin, gbc_lblDescripcin);
+				
+				txtDesc = new JTextField();
+				GridBagConstraints gbc_txtDesc = new GridBagConstraints();
+				gbc_txtDesc.fill = GridBagConstraints.BOTH;
+				gbc_txtDesc.insets = new Insets(0, 0, 5, 0);
+				gbc_txtDesc.gridx = 0;
+				gbc_txtDesc.gridy = 1;
+				pnlDetallesOf.add(txtDesc, gbc_txtDesc);
+				txtDesc.setColumns(10);
+				
+				lblValidaHasta = new JLabel("Válida hasta:");
+				GridBagConstraints gbc_lblValidaHasta = new GridBagConstraints();
+				gbc_lblValidaHasta.fill = GridBagConstraints.BOTH;
+				gbc_lblValidaHasta.insets = new Insets(0, 0, 5, 0);
+				gbc_lblValidaHasta.gridx = 0;
+				gbc_lblValidaHasta.gridy = 2;
+				pnlDetallesOf.add(lblValidaHasta, gbc_lblValidaHasta);
+				
+				ftxtValido = new JFormattedTextField();
+				ftxtValido.setMinimumSize(new Dimension(6, 10));
+				ftxtValido.setPreferredSize(new Dimension(6, 10));
+				GridBagConstraints gbc_ftxtValido = new GridBagConstraints();
+				gbc_ftxtValido.fill = GridBagConstraints.BOTH;
+				gbc_ftxtValido.gridx = 0;
+				gbc_ftxtValido.gridy = 3;
+				pnlDetallesOf.add(ftxtValido, gbc_ftxtValido);
+				
+				pnlEnvioOf = new JPanel();
+				pnlEnvioOf.setBorder(new TitledBorder(null, "Envio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				GridBagConstraints gbc_pnlEnvioOf = new GridBagConstraints();
+				gbc_pnlEnvioOf.insets = new Insets(0, 0, 5, 0);
+				gbc_pnlEnvioOf.fill = GridBagConstraints.BOTH;
+				gbc_pnlEnvioOf.gridx = 5;
+				gbc_pnlEnvioOf.gridy = 1;
+				tabOfertas.add(pnlEnvioOf, gbc_pnlEnvioOf);
+				GridBagLayout gbl_pnlEnvioOf = new GridBagLayout();
+				gbl_pnlEnvioOf.columnWidths = new int[]{195, 65, 0, 54, 0, 0};
+				gbl_pnlEnvioOf.rowHeights = new int[]{0, 0, 0, 0, 24, 0};
+				gbl_pnlEnvioOf.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+				gbl_pnlEnvioOf.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+				pnlEnvioOf.setLayout(gbl_pnlEnvioOf);
+				
+				lblTotalClientesVip = new JLabel("Total clientes VIP");
+				GridBagConstraints gbc_lblTotalClientesVip = new GridBagConstraints();
+				gbc_lblTotalClientesVip.anchor = GridBagConstraints.WEST;
+				gbc_lblTotalClientesVip.insets = new Insets(0, 0, 5, 5);
+				gbc_lblTotalClientesVip.gridx = 0;
+				gbc_lblTotalClientesVip.gridy = 0;
+				pnlEnvioOf.add(lblTotalClientesVip, gbc_lblTotalClientesVip);
+				
+				lblEnviarA = new JLabel("Enviar a ");
+				GridBagConstraints gbc_lblEnviarA = new GridBagConstraints();
+				gbc_lblEnviarA.anchor = GridBagConstraints.WEST;
+				gbc_lblEnviarA.insets = new Insets(0, 0, 5, 0);
+				gbc_lblEnviarA.gridx = 4;
+				gbc_lblEnviarA.gridy = 0;
+				pnlEnvioOf.add(lblEnviarA, gbc_lblEnviarA);
+				
+				scrollPaneCVIP = new JScrollPane();
+				GridBagConstraints gbc_scrollPaneCVIP = new GridBagConstraints();
+				gbc_scrollPaneCVIP.gridwidth = 2;
+				gbc_scrollPaneCVIP.insets = new Insets(0, 0, 5, 5);
+				gbc_scrollPaneCVIP.fill = GridBagConstraints.BOTH;
+				gbc_scrollPaneCVIP.gridx = 0;
+				gbc_scrollPaneCVIP.gridy = 1;
+				pnlEnvioOf.add(scrollPaneCVIP, gbc_scrollPaneCVIP);
+				
+				listCVIP = new JList();
+				scrollPaneCVIP.setViewportView(listCVIP);
+				
+				scrollPaneEnv = new JScrollPane();
+				GridBagConstraints gbc_scrollPaneEnv = new GridBagConstraints();
+				gbc_scrollPaneEnv.gridwidth = 2;
+				gbc_scrollPaneEnv.insets = new Insets(0, 0, 5, 0);
+				gbc_scrollPaneEnv.fill = GridBagConstraints.BOTH;
+				gbc_scrollPaneEnv.gridx = 3;
+				gbc_scrollPaneEnv.gridy = 1;
+				pnlEnvioOf.add(scrollPaneEnv, gbc_scrollPaneEnv);
+				
+				listEnv = new JList();
+				scrollPaneEnv.setViewportView(listEnv);
+				
+				btnSeleccionar = new JButton("Seleccionar");
+				GridBagConstraints gbc_btnSeleccionar = new GridBagConstraints();
+				gbc_btnSeleccionar.gridwidth = 2;
+				gbc_btnSeleccionar.insets = new Insets(0, 0, 5, 5);
+				gbc_btnSeleccionar.gridx = 0;
+				gbc_btnSeleccionar.gridy = 2;
+				pnlEnvioOf.add(btnSeleccionar, gbc_btnSeleccionar);
+				
+				btnEliminar_1 = new JButton("Eliminar");
+				GridBagConstraints gbc_btnEliminar_1 = new GridBagConstraints();
+				gbc_btnEliminar_1.gridwidth = 2;
+				gbc_btnEliminar_1.insets = new Insets(0, 0, 5, 0);
+				gbc_btnEliminar_1.gridx = 3;
+				gbc_btnEliminar_1.gridy = 2;
+				pnlEnvioOf.add(btnEliminar_1, gbc_btnEliminar_1);
+				
+				btnEnviar = new JButton("Enviar");
+				btnEnviar.setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/black-back-closed-envelope-shape.png")));
+				GridBagConstraints gbc_btnEnviar = new GridBagConstraints();
+				gbc_btnEnviar.fill = GridBagConstraints.BOTH;
+				gbc_btnEnviar.gridheight = 2;
+				gbc_btnEnviar.gridwidth = 3;
+				gbc_btnEnviar.gridx = 1;
+				gbc_btnEnviar.gridy = 3;
+				pnlEnvioOf.add(btnEnviar, gbc_btnEnviar);
+				
+				btnAadirOferta = new JButton("Añadir oferta");
+				GridBagConstraints gbc_btnAadirOferta = new GridBagConstraints();
+				gbc_btnAadirOferta.fill = GridBagConstraints.HORIZONTAL;
+				gbc_btnAadirOferta.insets = new Insets(0, 0, 5, 5);
+				gbc_btnAadirOferta.gridx = 1;
+				gbc_btnAadirOferta.gridy = 2;
+				tabOfertas.add(btnAadirOferta, gbc_btnAadirOferta);
+				
+				btnEditarOferta = new JButton("Editar oferta");
+				GridBagConstraints gbc_btnEditarOferta = new GridBagConstraints();
+				gbc_btnEditarOferta.fill = GridBagConstraints.HORIZONTAL;
+				gbc_btnEditarOferta.insets = new Insets(0, 0, 5, 5);
+				gbc_btnEditarOferta.gridx = 2;
+				gbc_btnEditarOferta.gridy = 2;
+				tabOfertas.add(btnEditarOferta, gbc_btnEditarOferta);
+				
+				btnBorrarOferta = new JButton("Borrar oferta");
+				GridBagConstraints gbc_btnBorrarOferta = new GridBagConstraints();
+				gbc_btnBorrarOferta.fill = GridBagConstraints.HORIZONTAL;
+				gbc_btnBorrarOferta.insets = new Insets(0, 0, 5, 5);
+				gbc_btnBorrarOferta.gridx = 3;
+				gbc_btnBorrarOferta.gridy = 2;
+				tabOfertas.add(btnBorrarOferta, gbc_btnBorrarOferta);
+				
+				tabMenu = new JPanel();
+				tabpnlMenusyOfertas.addTab("Menús", null, tabMenu, null);
+				GridBagLayout gbl_tabMenu = new GridBagLayout();
+				gbl_tabMenu.columnWidths = new int[]{0, 0, 0, 109, 250, 228, 0};
+				gbl_tabMenu.rowHeights = new int[]{0, 391, 0, 0, 0};
+				gbl_tabMenu.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+				gbl_tabMenu.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+				tabMenu.setLayout(gbl_tabMenu);
+				
+				scrollPane_4 = new JScrollPane();
+				GridBagConstraints gbc_scrollPane_4 = new GridBagConstraints();
+				gbc_scrollPane_4.fill = GridBagConstraints.BOTH;
+				gbc_scrollPane_4.gridwidth = 3;
+				gbc_scrollPane_4.insets = new Insets(0, 0, 5, 5);
+				gbc_scrollPane_4.gridx = 1;
+				gbc_scrollPane_4.gridy = 1;
+				tabMenu.add(scrollPane_4, gbc_scrollPane_4);
+				
+				list_3 = new JList();
+				scrollPane_4.setViewportView(list_3);
+				
+				panel_3 = new JPanel();
+				panel_3.setBorder(new TitledBorder(null, "Detalles", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				GridBagConstraints gbc_panel_3 = new GridBagConstraints();
+				gbc_panel_3.fill = GridBagConstraints.BOTH;
+				gbc_panel_3.insets = new Insets(0, 0, 5, 5);
+				gbc_panel_3.gridx = 4;
+				gbc_panel_3.gridy = 1;
+				tabMenu.add(panel_3, gbc_panel_3);
+				GridBagLayout gbl_panel_3 = new GridBagLayout();
+				gbl_panel_3.columnWidths = new int[]{194, 0};
+				gbl_panel_3.rowHeights = new int[]{53, 175, 42, 29, 0};
+				gbl_panel_3.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+				gbl_panel_3.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+				panel_3.setLayout(gbl_panel_3);
+				
+				label = new JLabel("Descripción:");
+				GridBagConstraints gbc_label = new GridBagConstraints();
+				gbc_label.fill = GridBagConstraints.BOTH;
+				gbc_label.insets = new Insets(0, 0, 5, 0);
+				gbc_label.gridx = 0;
+				gbc_label.gridy = 0;
+				panel_3.add(label, gbc_label);
+				
+				textField = new JTextField();
+				textField.setColumns(10);
+				GridBagConstraints gbc_textField = new GridBagConstraints();
+				gbc_textField.fill = GridBagConstraints.BOTH;
+				gbc_textField.insets = new Insets(0, 0, 5, 0);
+				gbc_textField.gridx = 0;
+				gbc_textField.gridy = 1;
+				panel_3.add(textField, gbc_textField);
+				
+				lblPrecio_1 = new JLabel("Precio:");
+				GridBagConstraints gbc_lblPrecio_1 = new GridBagConstraints();
+				gbc_lblPrecio_1.fill = GridBagConstraints.BOTH;
+				gbc_lblPrecio_1.insets = new Insets(0, 0, 5, 0);
+				gbc_lblPrecio_1.gridx = 0;
+				gbc_lblPrecio_1.gridy = 2;
+				panel_3.add(lblPrecio_1, gbc_lblPrecio_1);
+				
+				formattedTextField = new JFormattedTextField();
+				formattedTextField.setPreferredSize(new Dimension(6, 10));
+				formattedTextField.setMinimumSize(new Dimension(6, 10));
+				GridBagConstraints gbc_formattedTextField = new GridBagConstraints();
+				gbc_formattedTextField.fill = GridBagConstraints.BOTH;
+				gbc_formattedTextField.gridx = 0;
+				gbc_formattedTextField.gridy = 3;
+				panel_3.add(formattedTextField, gbc_formattedTextField);
+				
+				panel_4 = new JPanel();
+				panel_4.setBorder(new TitledBorder(null, "Envio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				GridBagConstraints gbc_panel_4 = new GridBagConstraints();
+				gbc_panel_4.fill = GridBagConstraints.BOTH;
+				gbc_panel_4.insets = new Insets(0, 0, 5, 0);
+				gbc_panel_4.gridx = 5;
+				gbc_panel_4.gridy = 1;
+				tabMenu.add(panel_4, gbc_panel_4);
+				GridBagLayout gbl_panel_4 = new GridBagLayout();
+				gbl_panel_4.columnWidths = new int[]{195, 65, 0, 54, 0, 0};
+				gbl_panel_4.rowHeights = new int[]{0, 0, 0, 0, 24, 0};
+				gbl_panel_4.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+				gbl_panel_4.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+				panel_4.setLayout(gbl_panel_4);
+				
+				label_2 = new JLabel("Total clientes VIP");
+				GridBagConstraints gbc_label_2 = new GridBagConstraints();
+				gbc_label_2.anchor = GridBagConstraints.WEST;
+				gbc_label_2.insets = new Insets(0, 0, 5, 5);
+				gbc_label_2.gridx = 0;
+				gbc_label_2.gridy = 0;
+				panel_4.add(label_2, gbc_label_2);
+				
+				label_3 = new JLabel("Enviar a ");
+				GridBagConstraints gbc_label_3 = new GridBagConstraints();
+				gbc_label_3.anchor = GridBagConstraints.WEST;
+				gbc_label_3.insets = new Insets(0, 0, 5, 0);
+				gbc_label_3.gridx = 4;
+				gbc_label_3.gridy = 0;
+				panel_4.add(label_3, gbc_label_3);
+				
+				scrollPane_5 = new JScrollPane();
+				GridBagConstraints gbc_scrollPane_5 = new GridBagConstraints();
+				gbc_scrollPane_5.fill = GridBagConstraints.BOTH;
+				gbc_scrollPane_5.gridwidth = 2;
+				gbc_scrollPane_5.insets = new Insets(0, 0, 5, 5);
+				gbc_scrollPane_5.gridx = 0;
+				gbc_scrollPane_5.gridy = 1;
+				panel_4.add(scrollPane_5, gbc_scrollPane_5);
+				
+				list_4 = new JList();
+				scrollPane_5.setViewportView(list_4);
+				
+				scrollPane_6 = new JScrollPane();
+				GridBagConstraints gbc_scrollPane_6 = new GridBagConstraints();
+				gbc_scrollPane_6.fill = GridBagConstraints.BOTH;
+				gbc_scrollPane_6.gridwidth = 2;
+				gbc_scrollPane_6.insets = new Insets(0, 0, 5, 0);
+				gbc_scrollPane_6.gridx = 3;
+				gbc_scrollPane_6.gridy = 1;
+				panel_4.add(scrollPane_6, gbc_scrollPane_6);
+				
+				list_5 = new JList();
+				scrollPane_6.setViewportView(list_5);
+				
+				button = new JButton("Seleccionar");
+				GridBagConstraints gbc_button = new GridBagConstraints();
+				gbc_button.gridwidth = 2;
+				gbc_button.insets = new Insets(0, 0, 5, 5);
+				gbc_button.gridx = 0;
+				gbc_button.gridy = 2;
+				panel_4.add(button, gbc_button);
+				
+				button_1 = new JButton("Eliminar");
+				GridBagConstraints gbc_button_1 = new GridBagConstraints();
+				gbc_button_1.gridwidth = 2;
+				gbc_button_1.insets = new Insets(0, 0, 5, 0);
+				gbc_button_1.gridx = 3;
+				gbc_button_1.gridy = 2;
+				panel_4.add(button_1, gbc_button_1);
+				
+				button_2 = new JButton("Enviar");
+				button_2.setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/black-back-closed-envelope-shape.png")));
+				GridBagConstraints gbc_button_2 = new GridBagConstraints();
+				gbc_button_2.fill = GridBagConstraints.BOTH;
+				gbc_button_2.gridheight = 2;
+				gbc_button_2.gridwidth = 3;
+				gbc_button_2.insets = new Insets(0, 0, 0, 5);
+				gbc_button_2.gridx = 1;
+				gbc_button_2.gridy = 3;
+				panel_4.add(button_2, gbc_button_2);
+				
+				btnAadirMen = new JButton("Añadir menú");
+				GridBagConstraints gbc_btnAadirMen = new GridBagConstraints();
+				gbc_btnAadirMen.fill = GridBagConstraints.HORIZONTAL;
+				gbc_btnAadirMen.insets = new Insets(0, 0, 5, 5);
+				gbc_btnAadirMen.gridx = 1;
+				gbc_btnAadirMen.gridy = 2;
+				tabMenu.add(btnAadirMen, gbc_btnAadirMen);
+				
+				btnEditarMen = new JButton("Editar menú");
+				GridBagConstraints gbc_btnEditarMen = new GridBagConstraints();
+				gbc_btnEditarMen.fill = GridBagConstraints.HORIZONTAL;
+				gbc_btnEditarMen.insets = new Insets(0, 0, 5, 5);
+				gbc_btnEditarMen.gridx = 2;
+				gbc_btnEditarMen.gridy = 2;
+				tabMenu.add(btnEditarMen, gbc_btnEditarMen);
+				
+				btnBorrarMen = new JButton("Borrar menú");
+				GridBagConstraints gbc_btnBorrarMen = new GridBagConstraints();
+				gbc_btnBorrarMen.fill = GridBagConstraints.HORIZONTAL;
+				gbc_btnBorrarMen.insets = new Insets(0, 0, 5, 5);
+				gbc_btnBorrarMen.gridx = 3;
+				gbc_btnBorrarMen.gridy = 2;
+				tabMenu.add(btnBorrarMen, gbc_btnBorrarMen);
+				
+				tabReparto = new JPanel();
+				tabbedPane.addTab("Reparto", null, tabReparto, null);
+				
 	}
 
 }

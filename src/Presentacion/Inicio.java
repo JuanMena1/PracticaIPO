@@ -98,10 +98,10 @@ public class Inicio {
 		panel = new JPanel();
 		frmInicio.getContentPane().add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 0, 0, 0, 0, 0, 0 };
-		gbl_panel.rowHeights = new int[] { 38, 0, 0, 0, 0, 0 };
-		gbl_panel.columnWeights = new double[] { 1.0, 1.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
-		gbl_panel.rowWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.columnWidths = new int[] { 135, 190, 84, 175, 141, 0 };
+		gbl_panel.rowHeights = new int[] { 38, 0, 91, 100, 60, 0 };
+		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 0.0, 1.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
 		lblFoto = new JLabel("");
@@ -119,47 +119,62 @@ public class Inicio {
 		panel.add(lblFoto, gbc_lblFoto);
 
 		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-		lblInfo = new JLabel("<html>Usuario: Admin" + "<br>Último acceso: " + formato.format(new Date()) + "</html>");
+		lblInfo = new JLabel("<html>Usuario: Admin" + "<br>Último acceso" + "<br>" + formato.format(new Date()) + "</html>");
 		GridBagConstraints gbc_lblInfo = new GridBagConstraints();
+		gbc_lblInfo.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblInfo.insets = new Insets(0, 0, 5, 0);
 		gbc_lblInfo.gridx = 4;
 		gbc_lblInfo.gridy = 0;
 		panel.add(lblInfo, gbc_lblInfo);
 
 		btnPedidos = new JButton("Pedidos");
+		btnPedidos.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/shopping-list.png")));
 		btnPedidos.addActionListener(new BtnPedidosActionListener());
 		GridBagConstraints gbc_btnPedidos = new GridBagConstraints();
+		gbc_btnPedidos.gridwidth = 2;
+		gbc_btnPedidos.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnPedidos.insets = new Insets(0, 0, 5, 5);
-		gbc_btnPedidos.gridx = 1;
+		gbc_btnPedidos.gridx = 0;
 		gbc_btnPedidos.gridy = 1;
 		panel.add(btnPedidos, gbc_btnPedidos);
 
 		btnClientesVip = new JButton("Clientes VIP");
+		btnClientesVip.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/star.png")));
 		btnClientesVip.addActionListener(new BtnClientesVipActionListener());
 		GridBagConstraints gbc_btnClientesVip = new GridBagConstraints();
+		gbc_btnClientesVip.gridwidth = 2;
+		gbc_btnClientesVip.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnClientesVip.insets = new Insets(0, 0, 5, 5);
 		gbc_btnClientesVip.gridx = 3;
 		gbc_btnClientesVip.gridy = 1;
 		panel.add(btnClientesVip, gbc_btnClientesVip);
 
 		btnOfertasYMens = new JButton("Ofertas y menús");
+		btnOfertasYMens.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/tag.png")));
 		btnOfertasYMens.addActionListener(new BtnOfertasYMensActionListener());
 		GridBagConstraints gbc_btnOfertasYMens = new GridBagConstraints();
+		gbc_btnOfertasYMens.gridwidth = 2;
+		gbc_btnOfertasYMens.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnOfertasYMens.insets = new Insets(0, 0, 5, 5);
-		gbc_btnOfertasYMens.gridx = 1;
+		gbc_btnOfertasYMens.gridx = 0;
 		gbc_btnOfertasYMens.gridy = 2;
 		panel.add(btnOfertasYMens, gbc_btnOfertasYMens);
 
 		btnProductos = new JButton("Productos");
+		btnProductos.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/shopping-cart-black-shape (1).png")));
 		btnProductos.addActionListener(new BtnProductosActionListener());
 		GridBagConstraints gbc_btnProductos = new GridBagConstraints();
+		gbc_btnProductos.gridwidth = 2;
+		gbc_btnProductos.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnProductos.insets = new Insets(0, 0, 5, 5);
 		gbc_btnProductos.gridx = 3;
 		gbc_btnProductos.gridy = 2;
 		panel.add(btnProductos, gbc_btnProductos);
 
 		btnReparto = new JButton("Reparto");
+		btnReparto.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/scooter.png")));
 		GridBagConstraints gbc_btnReparto = new GridBagConstraints();
+		gbc_btnReparto.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnReparto.gridwidth = 3;
 		gbc_btnReparto.insets = new Insets(0, 0, 5, 5);
 		gbc_btnReparto.gridx = 1;
@@ -167,9 +182,12 @@ public class Inicio {
 		panel.add(btnReparto, gbc_btnReparto);
 
 		btnCerrarSesin = new JButton("Cerrar sesión");
+		btnCerrarSesin.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/sign-out-option.png")));
 		btnCerrarSesin.addActionListener(new BtnCerrarSesinActionListener());
 		GridBagConstraints gbc_btnCerrarSesin = new GridBagConstraints();
-		gbc_btnCerrarSesin.gridx = 4;
+		gbc_btnCerrarSesin.anchor = GridBagConstraints.EAST;
+		gbc_btnCerrarSesin.gridwidth = 2;
+		gbc_btnCerrarSesin.gridx = 3;
 		gbc_btnCerrarSesin.gridy = 4;
 		panel.add(btnCerrarSesin, gbc_btnCerrarSesin);
 
