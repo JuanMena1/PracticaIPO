@@ -58,7 +58,7 @@ public class Login {
 	public Login() {
 		initialize();
 	}
-	
+
 	public JFrame getFrame() {
 		return frameLogin;
 	}
@@ -124,7 +124,8 @@ public class Login {
 
 	private class BtnEntrarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (!(String.valueOf(tfUsuario.getText()).equals("admin"))
+
+			/*if (!(String.valueOf(tfUsuario.getText()).equals("admin"))
 					|| !(String.valueOf(passwordField.getPassword()).equals("admin"))) {
 				lblAviso.setForeground(Color.RED);
 				lblAviso.setText("Usuario o Contraseña incorrecto. Inténtelo de nuevo.");
@@ -132,7 +133,9 @@ public class Login {
 			} else {
 				new Inicio().getFrame().setVisible(true);
 				frameLogin.dispose();
-			}
+			}*/
+			new Inicio().getFrame().setVisible(true);
+			frameLogin.dispose();
 		}
 	}
 

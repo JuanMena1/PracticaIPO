@@ -91,39 +91,33 @@ public class Inicio {
 	private void initialize() {
 		frmInicio = new JFrame();
 		frmInicio.setTitle("Inicio");
-		// frame.setBounds(new Rectangle(0, 0, 600, 750));
 		frmInicio.setBounds(100, 100, 750, 575);
 		frmInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		panel = new JPanel();
 		frmInicio.getContentPane().add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 135, 190, 84, 175, 141, 0 };
+		gbl_panel.columnWidths = new int[] { 38, 135, 190, 84, 175, 141, 34, 0 };
 		gbl_panel.rowHeights = new int[] { 38, 0, 91, 100, 60, 0 };
-		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_panel.rowWeights = new double[] { 0.0, 1.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
 		lblFoto = new JLabel("");
-		try {
-			Image m = ImageIO.read(new File("C:\\Users\\Juan Mena\\eclipse-workspace\\PracticaIPO\\images\\16480.jpg"));
-			ImageIcon im = new ImageIcon(m.getScaledInstance(100, 100, 0));
-			lblFoto.setIcon(im);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		lblFoto.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/16480.jpg")));
 		GridBagConstraints gbc_lblFoto = new GridBagConstraints();
 		gbc_lblFoto.insets = new Insets(0, 0, 5, 5);
-		gbc_lblFoto.gridx = 3;
+		gbc_lblFoto.gridx = 4;
 		gbc_lblFoto.gridy = 0;
 		panel.add(lblFoto, gbc_lblFoto);
 
 		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-		lblInfo = new JLabel("<html>Usuario: Admin" + "<br>Último acceso" + "<br>" + formato.format(new Date()) + "</html>");
+		lblInfo = new JLabel(
+				"<html>Usuario: Admin" + "<br>Último acceso" + "<br>" + formato.format(new Date()) + "</html>");
 		GridBagConstraints gbc_lblInfo = new GridBagConstraints();
 		gbc_lblInfo.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblInfo.insets = new Insets(0, 0, 5, 0);
-		gbc_lblInfo.gridx = 4;
+		gbc_lblInfo.insets = new Insets(0, 0, 5, 5);
+		gbc_lblInfo.gridx = 5;
 		gbc_lblInfo.gridy = 0;
 		panel.add(lblInfo, gbc_lblInfo);
 
@@ -134,7 +128,7 @@ public class Inicio {
 		gbc_btnPedidos.gridwidth = 2;
 		gbc_btnPedidos.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnPedidos.insets = new Insets(0, 0, 5, 5);
-		gbc_btnPedidos.gridx = 0;
+		gbc_btnPedidos.gridx = 1;
 		gbc_btnPedidos.gridy = 1;
 		panel.add(btnPedidos, gbc_btnPedidos);
 
@@ -145,7 +139,7 @@ public class Inicio {
 		gbc_btnClientesVip.gridwidth = 2;
 		gbc_btnClientesVip.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnClientesVip.insets = new Insets(0, 0, 5, 5);
-		gbc_btnClientesVip.gridx = 3;
+		gbc_btnClientesVip.gridx = 4;
 		gbc_btnClientesVip.gridy = 1;
 		panel.add(btnClientesVip, gbc_btnClientesVip);
 
@@ -156,28 +150,31 @@ public class Inicio {
 		gbc_btnOfertasYMens.gridwidth = 2;
 		gbc_btnOfertasYMens.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnOfertasYMens.insets = new Insets(0, 0, 5, 5);
-		gbc_btnOfertasYMens.gridx = 0;
+		gbc_btnOfertasYMens.gridx = 1;
 		gbc_btnOfertasYMens.gridy = 2;
 		panel.add(btnOfertasYMens, gbc_btnOfertasYMens);
 
 		btnProductos = new JButton("Productos");
-		btnProductos.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/shopping-cart-black-shape (1).png")));
+		btnProductos
+				.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/shopping-cart-black-shape (1).png")));
 		btnProductos.addActionListener(new BtnProductosActionListener());
 		GridBagConstraints gbc_btnProductos = new GridBagConstraints();
 		gbc_btnProductos.gridwidth = 2;
 		gbc_btnProductos.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnProductos.insets = new Insets(0, 0, 5, 5);
-		gbc_btnProductos.gridx = 3;
+		gbc_btnProductos.gridx = 4;
 		gbc_btnProductos.gridy = 2;
 		panel.add(btnProductos, gbc_btnProductos);
 
 		btnReparto = new JButton("Reparto");
+		btnReparto.addActionListener(new BtnRepartoActionListener());
 		btnReparto.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/scooter.png")));
+		btnReparto.addActionListener(new BtnRepartoActionListener());
 		GridBagConstraints gbc_btnReparto = new GridBagConstraints();
 		gbc_btnReparto.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnReparto.gridwidth = 3;
 		gbc_btnReparto.insets = new Insets(0, 0, 5, 5);
-		gbc_btnReparto.gridx = 1;
+		gbc_btnReparto.gridx = 2;
 		gbc_btnReparto.gridy = 3;
 		panel.add(btnReparto, gbc_btnReparto);
 
@@ -185,9 +182,10 @@ public class Inicio {
 		btnCerrarSesin.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/sign-out-option.png")));
 		btnCerrarSesin.addActionListener(new BtnCerrarSesinActionListener());
 		GridBagConstraints gbc_btnCerrarSesin = new GridBagConstraints();
+		gbc_btnCerrarSesin.insets = new Insets(0, 0, 0, 5);
 		gbc_btnCerrarSesin.anchor = GridBagConstraints.EAST;
 		gbc_btnCerrarSesin.gridwidth = 2;
-		gbc_btnCerrarSesin.gridx = 3;
+		gbc_btnCerrarSesin.gridx = 4;
 		gbc_btnCerrarSesin.gridy = 4;
 		panel.add(btnCerrarSesin, gbc_btnCerrarSesin);
 
@@ -230,11 +228,9 @@ public class Inicio {
 				PrincipalWin = new Principal();
 				PrincipalWin.getFrame().setVisible(true);
 				PrincipalWin.getTabbedPane().setSelectedIndex(1);
-				frmInicio.dispose();
 			} else {
 				PrincipalWin.getFrame().setVisible(true);
 				PrincipalWin.getTabbedPane().setSelectedIndex(1);
-				frmInicio.dispose();
 			}
 		}
 	}
@@ -245,11 +241,9 @@ public class Inicio {
 				PrincipalWin = new Principal();
 				PrincipalWin.getFrame().setVisible(true);
 				PrincipalWin.getTabbedPane().setSelectedIndex(2);
-				frmInicio.dispose();
 			} else {
 				PrincipalWin.getFrame().setVisible(true);
 				PrincipalWin.getTabbedPane().setSelectedIndex(2);
-				frmInicio.dispose();
 			}
 		}
 	}
@@ -260,11 +254,10 @@ public class Inicio {
 				PrincipalWin = new Principal();
 				PrincipalWin.getFrame().setVisible(true);
 				PrincipalWin.getTabbedPane().setSelectedIndex(0);
-				frmInicio.dispose();
 			} else {
 				PrincipalWin.getFrame().setVisible(true);
 				PrincipalWin.getTabbedPane().setSelectedIndex(0);
-				frmInicio.dispose();
+
 			}
 		}
 	}
@@ -275,15 +268,26 @@ public class Inicio {
 				PrincipalWin = new Principal();
 				PrincipalWin.getFrame().setVisible(true);
 				PrincipalWin.getTabbedPane().setSelectedIndex(3);
-				frmInicio.dispose();
 			} else {
 				PrincipalWin.getFrame().setVisible(true);
 				PrincipalWin.getTabbedPane().setSelectedIndex(3);
-				frmInicio.dispose();
 			}
 		}
 	}
 
+	private class BtnRepartoActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (PrincipalWin == null) {
+				PrincipalWin = new Principal();
+				PrincipalWin.getFrame().setVisible(true);
+				PrincipalWin.getTabbedPane().setSelectedIndex(4);
+			} else {
+				PrincipalWin.getFrame().setVisible(true);
+				PrincipalWin.getTabbedPane().setSelectedIndex(4);
+			}
+		}
+	}
+	
 	private class BtnCerrarSesinActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
