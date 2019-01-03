@@ -16,6 +16,7 @@ import java.awt.Point;
 
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTree;
 import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
@@ -73,6 +74,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeSelectionModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.event.TreeSelectionEvent;
@@ -186,8 +188,8 @@ public class Principal {
 	private JButton btnEditarMen;
 	private JButton btnBorrarMen;
 	private JList list_3;
-	private JList list_4;
-	private JList list_5;
+	private JList listVIPMenu;
+	private JList listEnvMenu;
 	private JPanel tabReparto;
 	private JLabel lblPuntosAcumulados;
 	private JLabel lblPuntosCanjeados;
@@ -230,9 +232,21 @@ public class Principal {
 	private Image imagSeleccion;
 	private Cursor cursorUbicacion;
 	private Cursor cursorSeleccion;
-	
-	private int x, y;
 
+	private int x, y;
+	private JLabel lblNombreP;
+	private JTextField txtNombreP;
+
+	private DefaultListModel modelolista;
+	private DefaultListModel modelolistaOf;
+	private JLabel lblNombre_1;
+	private JTextField txtNombreOf;
+	private JLabel lblNombre_2;
+	private JTextField txtNombreMenus;
+	private JButton btnImagen;
+	private JButton btnModificarImagen;
+	private JButton btnModificarFoto;
+	private JButton btnModificarImagen_1;
 
 	/**
 	 * Launch the application.
@@ -316,6 +330,7 @@ public class Principal {
 				return values[index];
 			}
 		});
+		list_1.setSelectedIndex(0);
 		scrollPane.setViewportView(list_1);
 
 		panel = new JPanel();
@@ -335,6 +350,7 @@ public class Principal {
 		panel.setLayout(gbl_panel);
 
 		lblImagen = new JLabel("Imagen");
+		lblImagen.setForeground(Color.BLACK);
 		GridBagConstraints gbc_lblImagen = new GridBagConstraints();
 		gbc_lblImagen.gridwidth = 2;
 		gbc_lblImagen.gridheight = 5;
@@ -352,6 +368,7 @@ public class Principal {
 		panel.add(lblId, gbc_lblId);
 
 		txtID = new JTextField();
+		txtID.setText("VIP01");
 		GridBagConstraints gbc_txtID = new GridBagConstraints();
 		gbc_txtID.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtID.insets = new Insets(0, 0, 5, 5);
@@ -369,6 +386,7 @@ public class Principal {
 		panel.add(lblNombre, gbc_lblNombre);
 
 		txtNombre = new JTextField();
+		txtNombre.setText("Ana");
 		txtNombre.addKeyListener(new TxtNombreKeyListener());
 
 		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
@@ -388,6 +406,7 @@ public class Principal {
 		panel.add(lblApellidos, gbc_lblApellidos);
 
 		txtApellidos = new JTextField();
+		txtApellidos.setText("Martín");
 		txtApellidos.addKeyListener(new TxtNombreKeyListener());
 		GridBagConstraints gbc_txtApellidos = new GridBagConstraints();
 		gbc_txtApellidos.fill = GridBagConstraints.HORIZONTAL;
@@ -412,6 +431,7 @@ public class Principal {
 			formatoTlfno = new MaskFormatter("###' ###' ###");
 			formatoTlfno.setPlaceholderCharacter('*');
 			ftxtTelefono = new JFormattedTextField(formatoTlfno);
+			ftxtTelefono.setText("698253417");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -432,6 +452,7 @@ public class Principal {
 		panel.add(lblDireccin, gbc_lblDireccin);
 
 		txtDireccion = new JTextField();
+		txtDireccion.setText("C/ Reyes Católicos 27, Ciudad Real");
 		GridBagConstraints gbc_txtDireccion = new GridBagConstraints();
 		gbc_txtDireccion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtDireccion.gridwidth = 2;
@@ -458,6 +479,7 @@ public class Principal {
 		panel.add(lblCorreoElectrnico, gbc_lblCorreoElectrnico);
 
 		txtCorreo = new JTextField();
+		txtCorreo.setText("ana_martin@gmail.com");
 		GridBagConstraints gbc_txtCorreo = new GridBagConstraints();
 		gbc_txtCorreo.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtCorreo.gridwidth = 2;
@@ -484,6 +506,17 @@ public class Principal {
 		panel.add(comboBox, gbc_comboBox);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] { "No", "Vegetariano/a", "Vegano/a" }));
 
+		btnModificarFoto = new JButton("Modificar foto");
+		btnModificarFoto.addActionListener(new BtnModificarFotoActionListener());
+		btnModificarFoto.setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/frame-landscape.png")));
+		GridBagConstraints gbc_btnModificarFoto = new GridBagConstraints();
+		gbc_btnModificarFoto.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnModificarFoto.gridwidth = 2;
+		gbc_btnModificarFoto.insets = new Insets(0, 0, 5, 5);
+		gbc_btnModificarFoto.gridx = 0;
+		gbc_btnModificarFoto.gridy = 8;
+		panel.add(btnModificarFoto, gbc_btnModificarFoto);
+
 		lblAlrgenos_1 = new JLabel("Alérgenos:");
 		GridBagConstraints gbc_lblAlrgenos_1 = new GridBagConstraints();
 		gbc_lblAlrgenos_1.anchor = GridBagConstraints.WEST;
@@ -493,6 +526,7 @@ public class Principal {
 		panel.add(lblAlrgenos_1, gbc_lblAlrgenos_1);
 
 		txtAlergenosC = new JTextField();
+		txtAlergenosC.setText("Intolerante a la lactosa");
 		GridBagConstraints gbc_txtAlergenosC = new GridBagConstraints();
 		gbc_txtAlergenosC.fill = GridBagConstraints.BOTH;
 		gbc_txtAlergenosC.gridwidth = 2;
@@ -553,38 +587,40 @@ public class Principal {
 		tabHist.add(scrollPane_8, gbc_scrollPane_8);
 
 		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] {},
+		table.setModel(new DefaultTableModel(
+				new Object[][] { { new Integer(1), "A recoger", "30/09/2018", new Double(35.95), " " },
+						{ new Integer(2), "A domicilio", "10/10/2018", "16.98",
+								"C/ Concepci\u00F3n Arenal 3 4\u00AAA  Ciudad Real" },
+						{ new Integer(3), "A domicilio", "11/11/2018", "27.97",
+								"C/ Concepci\u00F3n Arenal 3 4\u00AAA  Ciudad Real" }, },
 				new String[] { "N\u00BA pedido", "Tipo", "Fecha", "Importe", "Direcci\u00F3n" }) {
 			Class[] columnTypes = new Class[] { Integer.class, String.class, String.class, String.class, String.class };
 
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-
-			boolean[] columnEditables = new boolean[] { false, false, false, false, false };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
 		});
 		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(70);
+		table.getColumnModel().getColumn(0).setPreferredWidth(20);
 		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(50);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(3).setResizable(false);
-		table.getColumnModel().getColumn(3).setPreferredWidth(70);
-		table.getColumnModel().getColumn(4).setPreferredWidth(85);
+		table.getColumnModel().getColumn(3).setPreferredWidth(35);
+		table.getColumnModel().getColumn(4).setPreferredWidth(120);
+		table.getColumnModel().getColumn(4).setMinWidth(50);
 		scrollPane_8.setViewportView(table);
 
 		lblPuntosAcumulados = new JLabel("Puntos acumulados:");
 		GridBagConstraints gbc_lblPuntosAcumulados = new GridBagConstraints();
-		gbc_lblPuntosAcumulados.anchor = GridBagConstraints.EAST;
+		gbc_lblPuntosAcumulados.anchor = GridBagConstraints.WEST;
 		gbc_lblPuntosAcumulados.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPuntosAcumulados.gridx = 1;
 		gbc_lblPuntosAcumulados.gridy = 3;
 		tabHist.add(lblPuntosAcumulados, gbc_lblPuntosAcumulados);
 
 		txtPuntosAcumulados = new JTextField();
+		txtPuntosAcumulados.setText("6 puntos");
 		txtPuntosAcumulados.setBorder(null);
 		txtPuntosAcumulados.setBackground(SystemColor.menu);
 		GridBagConstraints gbc_txtPuntosAcumulados = new GridBagConstraints();
@@ -597,13 +633,14 @@ public class Principal {
 
 		lblPuntosCanjeados = new JLabel("Puntos canjeados:");
 		GridBagConstraints gbc_lblPuntosCanjeados = new GridBagConstraints();
-		gbc_lblPuntosCanjeados.anchor = GridBagConstraints.EAST;
+		gbc_lblPuntosCanjeados.anchor = GridBagConstraints.WEST;
 		gbc_lblPuntosCanjeados.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPuntosCanjeados.gridx = 1;
 		gbc_lblPuntosCanjeados.gridy = 4;
 		tabHist.add(lblPuntosCanjeados, gbc_lblPuntosCanjeados);
 
 		txtPuntosCanjeados = new JTextField();
+		txtPuntosCanjeados.setText("0 puntos");
 		txtPuntosCanjeados.setBorder(null);
 		txtPuntosCanjeados.setBackground(SystemColor.menu);
 		GridBagConstraints gbc_txtPuntosCanjeados = new GridBagConstraints();
@@ -616,13 +653,14 @@ public class Principal {
 
 		lblCaducidadDePuntos = new JLabel("Caducidad de puntos:");
 		GridBagConstraints gbc_lblCaducidadDePuntos = new GridBagConstraints();
-		gbc_lblCaducidadDePuntos.anchor = GridBagConstraints.EAST;
+		gbc_lblCaducidadDePuntos.anchor = GridBagConstraints.WEST;
 		gbc_lblCaducidadDePuntos.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCaducidadDePuntos.gridx = 1;
 		gbc_lblCaducidadDePuntos.gridy = 5;
 		tabHist.add(lblCaducidadDePuntos, gbc_lblCaducidadDePuntos);
 
 		txtCaducidadPuntos = new JTextField();
+		txtCaducidadPuntos.setText("30/01/2019");
 		txtCaducidadPuntos.setBorder(null);
 		txtCaducidadPuntos.setBackground(SystemColor.menu);
 		GridBagConstraints gbc_txtCaducidadPuntos = new GridBagConstraints();
@@ -655,6 +693,7 @@ public class Principal {
 		tabProductos.add(scrollPaneTree, gbc_scrollPaneTree);
 
 		tree = new JTree();
+		tree.setRootVisible(false);
 		tree.addTreeSelectionListener(new TreeTreeSelectionListener());
 		tree.setModel(new DefaultTreeModel(new DefaultMutableTreeNode("Categorías") {
 			{
@@ -670,6 +709,7 @@ public class Principal {
 			}
 		}));
 		scrollPaneTree.setViewportView(tree);
+		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 
 		scrollPaneList = new JScrollPane();
 		GridBagConstraints gbc_scrollPaneList = new GridBagConstraints();
@@ -683,6 +723,9 @@ public class Principal {
 		panelCard = new JPanel();
 		scrollPaneList.setViewportView(panelCard);
 		panelCard.setLayout(new GridLayout(1, 0, 0, 0));
+		GridLayout layout = (GridLayout) panelCard.getLayout();
+		layout.setRows(2);
+		panelCard.revalidate();
 
 		pnlDetalles = new JPanel();
 		pnlDetalles.setBorder(
@@ -696,16 +739,36 @@ public class Principal {
 		tabProductos.add(pnlDetalles, gbc_pnlDetalles);
 		GridBagLayout gbl_pnlDetalles = new GridBagLayout();
 		gbl_pnlDetalles.columnWidths = new int[] { 90, 0, 50, 0 };
-		gbl_pnlDetalles.rowHeights = new int[] { 36, 0, 38, 0, 39, 0, 0, 0, 37, 0 };
-		gbl_pnlDetalles.columnWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
-		gbl_pnlDetalles.rowWeights = new double[] { 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_pnlDetalles.rowHeights = new int[] { 0, 0, 36, 0, 38, 0, 39, 0, 0, 0, 37, 0 };
+		gbl_pnlDetalles.columnWeights = new double[] { 1.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_pnlDetalles.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
 		pnlDetalles.setLayout(gbl_pnlDetalles);
+
+		lblNombreP = new JLabel("Nombre:");
+		GridBagConstraints gbc_lblNombreP = new GridBagConstraints();
+		gbc_lblNombreP.anchor = GridBagConstraints.WEST;
+		gbc_lblNombreP.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNombreP.gridx = 0;
+		gbc_lblNombreP.gridy = 0;
+		pnlDetalles.add(lblNombreP, gbc_lblNombreP);
+
+		txtNombreP = new JTextField();
+		GridBagConstraints gbc_txtNombreP = new GridBagConstraints();
+		gbc_txtNombreP.gridwidth = 3;
+		gbc_txtNombreP.insets = new Insets(0, 0, 5, 0);
+		gbc_txtNombreP.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtNombreP.gridx = 0;
+		gbc_txtNombreP.gridy = 1;
+		pnlDetalles.add(txtNombreP, gbc_txtNombreP);
+		txtNombreP.setColumns(10);
 
 		lblIngredientes = new JLabel("Ingredientes:");
 		GridBagConstraints gbc_lblIngredientes = new GridBagConstraints();
+		gbc_lblIngredientes.anchor = GridBagConstraints.WEST;
 		gbc_lblIngredientes.insets = new Insets(0, 0, 5, 5);
 		gbc_lblIngredientes.gridx = 0;
-		gbc_lblIngredientes.gridy = 0;
+		gbc_lblIngredientes.gridy = 2;
 		pnlDetalles.add(lblIngredientes, gbc_lblIngredientes);
 
 		txtIngredientes = new JTextField();
@@ -714,15 +777,16 @@ public class Principal {
 		gbc_txtIngredientes.fill = GridBagConstraints.BOTH;
 		gbc_txtIngredientes.insets = new Insets(0, 0, 5, 0);
 		gbc_txtIngredientes.gridx = 0;
-		gbc_txtIngredientes.gridy = 1;
+		gbc_txtIngredientes.gridy = 3;
 		pnlDetalles.add(txtIngredientes, gbc_txtIngredientes);
 		txtIngredientes.setColumns(10);
 
 		lblAlrgenos = new JLabel("Alérgenos:");
 		GridBagConstraints gbc_lblAlrgenos = new GridBagConstraints();
+		gbc_lblAlrgenos.anchor = GridBagConstraints.WEST;
 		gbc_lblAlrgenos.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAlrgenos.gridx = 0;
-		gbc_lblAlrgenos.gridy = 2;
+		gbc_lblAlrgenos.gridy = 4;
 		pnlDetalles.add(lblAlrgenos, gbc_lblAlrgenos);
 
 		txtAlergenos = new JTextField();
@@ -731,7 +795,7 @@ public class Principal {
 		gbc_txtAlergenos.fill = GridBagConstraints.BOTH;
 		gbc_txtAlergenos.insets = new Insets(0, 0, 5, 0);
 		gbc_txtAlergenos.gridx = 0;
-		gbc_txtAlergenos.gridy = 3;
+		gbc_txtAlergenos.gridy = 5;
 		pnlDetalles.add(txtAlergenos, gbc_txtAlergenos);
 		txtAlergenos.setColumns(10);
 
@@ -740,7 +804,7 @@ public class Principal {
 		gbc_lblPicante.anchor = GridBagConstraints.WEST;
 		gbc_lblPicante.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPicante.gridx = 0;
-		gbc_lblPicante.gridy = 4;
+		gbc_lblPicante.gridy = 6;
 		pnlDetalles.add(lblPicante, gbc_lblPicante);
 
 		rdbtnS = new JRadioButton("Sí");
@@ -749,7 +813,7 @@ public class Principal {
 		gbc_rdbtnS.anchor = GridBagConstraints.WEST;
 		gbc_rdbtnS.insets = new Insets(0, 0, 5, 5);
 		gbc_rdbtnS.gridx = 0;
-		gbc_rdbtnS.gridy = 5;
+		gbc_rdbtnS.gridy = 7;
 		pnlDetalles.add(rdbtnS, gbc_rdbtnS);
 
 		rdbtnNo = new JRadioButton("No");
@@ -757,7 +821,7 @@ public class Principal {
 		GridBagConstraints gbc_rdbtnNo = new GridBagConstraints();
 		gbc_rdbtnNo.insets = new Insets(0, 0, 5, 5);
 		gbc_rdbtnNo.gridx = 1;
-		gbc_rdbtnNo.gridy = 5;
+		gbc_rdbtnNo.gridy = 7;
 		pnlDetalles.add(rdbtnNo, gbc_rdbtnNo);
 
 		lblPrecio = new JLabel("Precio (€):");
@@ -765,7 +829,7 @@ public class Principal {
 		gbc_lblPrecio.anchor = GridBagConstraints.WEST;
 		gbc_lblPrecio.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPrecio.gridx = 0;
-		gbc_lblPrecio.gridy = 6;
+		gbc_lblPrecio.gridy = 8;
 		pnlDetalles.add(lblPrecio, gbc_lblPrecio);
 
 		txtPrecio = new JTextField();
@@ -776,9 +840,20 @@ public class Principal {
 		gbc_txtPrecio.insets = new Insets(0, 0, 5, 5);
 		gbc_txtPrecio.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtPrecio.gridx = 0;
-		gbc_txtPrecio.gridy = 7;
+		gbc_txtPrecio.gridy = 9;
 		pnlDetalles.add(txtPrecio, gbc_txtPrecio);
 		txtPrecio.setColumns(10);
+
+		btnModificarImagen_1 = new JButton("Modificar imagen");
+		btnModificarImagen_1.addActionListener(new BtnModificarImagen_1ActionListener());
+		btnModificarImagen_1.setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/frame-landscape.png")));
+		GridBagConstraints gbc_btnModificarImagen_1 = new GridBagConstraints();
+		gbc_btnModificarImagen_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnModificarImagen_1.gridwidth = 2;
+		gbc_btnModificarImagen_1.insets = new Insets(0, 0, 0, 5);
+		gbc_btnModificarImagen_1.gridx = 0;
+		gbc_btnModificarImagen_1.gridy = 10;
+		pnlDetalles.add(btnModificarImagen_1, gbc_btnModificarImagen_1);
 
 		btnDarDeAlta = new JButton("Dar de alta");
 		btnDarDeAlta.setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/add.png")));
@@ -864,33 +939,46 @@ public class Principal {
 		panelPedidos.add(scrollPane_1, gbc_scrollPane_1);
 
 		tablePedidos = new JTable();
-		tablePedidos.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "ID", "Estado", "Tipo", "Fecha",
-				"Hora", "Pagado", "Cliente", "ID Cliente", "VIP", "Importe", "Direcci\u00F3n" }) {
-			Class[] columnTypes = new Class[] { Object.class, String.class, String.class, String.class, String.class,
-					Boolean.class, String.class, String.class, Boolean.class, Double.class, String.class };
-
+		tablePedidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tablePedidos.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"1", "En elaboraci\u00F3n", "A domicilio", "11/11/2018", "21:30", Boolean.TRUE, "Ana Mart\u00EDn", "VIP01", Boolean.TRUE, new Double(27.97), "C/Concepci\u00F3n Arenal 3 4\u00BAA Ciudad Real"},
+				{"2", "Preparado", "A recoger", "20/12/2018", "22:00", Boolean.FALSE, "Pedro Gallego", "CL02", null, new Double(16.99), "-"},
+			},
+			new String[] {
+				"ID", "Estado", "Tipo", "Fecha", "Hora", "Pagado", "Cliente", "ID Cliente", "VIP", "Importe", "Direcci\u00F3n"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Object.class, String.class, String.class, String.class, String.class, Boolean.class, String.class, String.class, Boolean.class, Double.class, String.class
+			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-
-			boolean[] columnEditables = new boolean[] { false, true, true, true, true, true, true, true, true, true,
-					true };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
 		});
 		tablePedidos.getColumnModel().getColumn(0).setResizable(false);
+		tablePedidos.getColumnModel().getColumn(0).setPreferredWidth(15);
+		tablePedidos.getColumnModel().getColumn(0).setMinWidth(10);
 		tablePedidos.getColumnModel().getColumn(1).setResizable(false);
 		tablePedidos.getColumnModel().getColumn(2).setResizable(false);
+		tablePedidos.getColumnModel().getColumn(2).setPreferredWidth(50);
 		tablePedidos.getColumnModel().getColumn(3).setResizable(false);
+		tablePedidos.getColumnModel().getColumn(3).setPreferredWidth(40);
 		tablePedidos.getColumnModel().getColumn(4).setResizable(false);
+		tablePedidos.getColumnModel().getColumn(4).setPreferredWidth(20);
 		tablePedidos.getColumnModel().getColumn(5).setResizable(false);
+		tablePedidos.getColumnModel().getColumn(5).setPreferredWidth(15);
+		tablePedidos.getColumnModel().getColumn(5).setMinWidth(10);
 		tablePedidos.getColumnModel().getColumn(6).setResizable(false);
 		tablePedidos.getColumnModel().getColumn(7).setResizable(false);
+		tablePedidos.getColumnModel().getColumn(7).setPreferredWidth(25);
 		tablePedidos.getColumnModel().getColumn(8).setResizable(false);
+		tablePedidos.getColumnModel().getColumn(8).setPreferredWidth(15);
+		tablePedidos.getColumnModel().getColumn(8).setMinWidth(10);
 		tablePedidos.getColumnModel().getColumn(9).setResizable(false);
+		tablePedidos.getColumnModel().getColumn(9).setPreferredWidth(20);
 		tablePedidos.getColumnModel().getColumn(10).setResizable(false);
+		tablePedidos.getColumnModel().getColumn(10).setPreferredWidth(210);
 		scrollPane_1.setViewportView(tablePedidos);
 
 		btnEliminarPedido = new JButton("Eliminar pedido");
@@ -944,13 +1032,23 @@ public class Principal {
 
 		tableProductos = new JTable();
 		tableProductos
-				.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nombre", "Cantidad", "Precio" }) {
-					Class[] columnTypes = new Class[] { String.class, String.class, Double.class };
-
-					public Class getColumnClass(int columnIndex) {
-						return columnTypes[columnIndex];
-					}
-				});
+				.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"Pizza Barbacoa", "x1", new Double(7.99)},
+				{"Costillas de cerdo", "x2", new Double(16.98)},
+				{"Coca-Cola", "x2", new Double(3.0)},
+			},
+			new String[] {
+				"Nombre", "Cantidad", "Precio"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, Double.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
 		tableProductos.getColumnModel().getColumn(0).setResizable(false);
 		tableProductos.getColumnModel().getColumn(1).setResizable(false);
 		tableProductos.getColumnModel().getColumn(2).setResizable(false);
@@ -1069,17 +1167,34 @@ public class Principal {
 		tabMenu.add(panel_3, gbc_panel_3);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[] { 194, 0 };
-		gbl_panel_3.rowHeights = new int[] { 53, 171, 42, 29, 0 };
+		gbl_panel_3.rowHeights = new int[] { 0, 0, 37, 171, 32, 29, 0, 0 };
 		gbl_panel_3.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
-		gbl_panel_3.rowWeights = new double[] { 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel_3.setLayout(gbl_panel_3);
+
+		lblNombre_2 = new JLabel("Nombre:");
+		GridBagConstraints gbc_lblNombre_2 = new GridBagConstraints();
+		gbc_lblNombre_2.anchor = GridBagConstraints.WEST;
+		gbc_lblNombre_2.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNombre_2.gridx = 0;
+		gbc_lblNombre_2.gridy = 0;
+		panel_3.add(lblNombre_2, gbc_lblNombre_2);
+
+		txtNombreMenus = new JTextField();
+		GridBagConstraints gbc_txtNombreMenus = new GridBagConstraints();
+		gbc_txtNombreMenus.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtNombreMenus.insets = new Insets(0, 0, 5, 0);
+		gbc_txtNombreMenus.gridx = 0;
+		gbc_txtNombreMenus.gridy = 1;
+		panel_3.add(txtNombreMenus, gbc_txtNombreMenus);
+		txtNombreMenus.setColumns(10);
 
 		label = new JLabel("Descripción:");
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.fill = GridBagConstraints.BOTH;
 		gbc_label.insets = new Insets(0, 0, 5, 0);
 		gbc_label.gridx = 0;
-		gbc_label.gridy = 0;
+		gbc_label.gridy = 2;
 		panel_3.add(label, gbc_label);
 
 		textField = new JTextField();
@@ -1088,7 +1203,7 @@ public class Principal {
 		gbc_textField.fill = GridBagConstraints.BOTH;
 		gbc_textField.insets = new Insets(0, 0, 5, 0);
 		gbc_textField.gridx = 0;
-		gbc_textField.gridy = 1;
+		gbc_textField.gridy = 3;
 		panel_3.add(textField, gbc_textField);
 
 		lblPrecio_1 = new JLabel("Precio (€):");
@@ -1096,17 +1211,27 @@ public class Principal {
 		gbc_lblPrecio_1.fill = GridBagConstraints.BOTH;
 		gbc_lblPrecio_1.insets = new Insets(0, 0, 5, 0);
 		gbc_lblPrecio_1.gridx = 0;
-		gbc_lblPrecio_1.gridy = 2;
+		gbc_lblPrecio_1.gridy = 4;
 		panel_3.add(lblPrecio_1, gbc_lblPrecio_1);
 
 		formattedTextField = new JFormattedTextField();
 		formattedTextField.setPreferredSize(new Dimension(6, 10));
 		formattedTextField.setMinimumSize(new Dimension(6, 10));
 		GridBagConstraints gbc_formattedTextField = new GridBagConstraints();
+		gbc_formattedTextField.insets = new Insets(0, 0, 5, 0);
 		gbc_formattedTextField.fill = GridBagConstraints.BOTH;
 		gbc_formattedTextField.gridx = 0;
-		gbc_formattedTextField.gridy = 3;
+		gbc_formattedTextField.gridy = 5;
 		panel_3.add(formattedTextField, gbc_formattedTextField);
+
+		btnImagen = new JButton("Modificar imagen");
+		btnImagen.addActionListener(new BtnImagenActionListener());
+		btnImagen.setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/frame-landscape.png")));
+		GridBagConstraints gbc_btnImagen = new GridBagConstraints();
+		gbc_btnImagen.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnImagen.gridx = 0;
+		gbc_btnImagen.gridy = 6;
+		panel_3.add(btnImagen, gbc_btnImagen);
 
 		panel_4 = new JPanel();
 		panel_4.setBorder(new TitledBorder(null, "Envio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -1117,7 +1242,7 @@ public class Principal {
 		gbc_panel_4.gridy = 1;
 		tabMenu.add(panel_4, gbc_panel_4);
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
-		gbl_panel_4.columnWidths = new int[] { 121, 64, 0, 37, 127, 0 };
+		gbl_panel_4.columnWidths = new int[] { 121, 64, 0, 65, 108, 0 };
 		gbl_panel_4.rowHeights = new int[] { 0, 0, 0, 0, 24, 0 };
 		gbl_panel_4.columnWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
 		gbl_panel_4.rowWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
@@ -1148,8 +1273,19 @@ public class Principal {
 		gbc_scrollPane_5.gridy = 1;
 		panel_4.add(scrollPane_5, gbc_scrollPane_5);
 
-		list_4 = new JList();
-		scrollPane_5.setViewportView(list_4);
+		listVIPMenu = new JList();
+		listVIPMenu.setModel(new AbstractListModel() {
+			String[] values = new String[] { "Ana Martín", "Pedro Serrano", "Carlos Gallego" };
+
+			public int getSize() {
+				return values.length;
+			}
+
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		scrollPane_5.setViewportView(listVIPMenu);
 
 		scrollPane_6 = new JScrollPane();
 		GridBagConstraints gbc_scrollPane_6 = new GridBagConstraints();
@@ -1160,10 +1296,13 @@ public class Principal {
 		gbc_scrollPane_6.gridy = 1;
 		panel_4.add(scrollPane_6, gbc_scrollPane_6);
 
-		list_5 = new JList();
-		scrollPane_6.setViewportView(list_5);
+		listEnvMenu = new JList();
+		modelolista = new DefaultListModel();
+		listEnvMenu.setModel(modelolista);
+		scrollPane_6.setViewportView(listEnvMenu);
 
 		button = new JButton("Seleccionar");
+		button.addActionListener(new ButtonActionListener());
 		button.setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/scroll-arrow-to-right.png")));
 		GridBagConstraints gbc_button = new GridBagConstraints();
 		gbc_button.gridwidth = 2;
@@ -1173,6 +1312,7 @@ public class Principal {
 		panel_4.add(button, gbc_button);
 
 		button_1 = new JButton("Eliminar");
+		button_1.addActionListener(new Button_1ActionListener());
 		button_1.setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/scroll-arrow-to-left.png")));
 		GridBagConstraints gbc_button_1 = new GridBagConstraints();
 		gbc_button_1.gridwidth = 2;
@@ -1182,6 +1322,7 @@ public class Principal {
 		panel_4.add(button_1, gbc_button_1);
 
 		button_2 = new JButton("Enviar");
+		button_2.addActionListener(new Button_2ActionListener());
 		button_2.setIcon(
 				new ImageIcon(Principal.class.getResource("/Presentacion/black-back-closed-envelope-shape.png")));
 		GridBagConstraints gbc_button_2 = new GridBagConstraints();
@@ -1252,17 +1393,34 @@ public class Principal {
 		tabOfertas.add(pnlDetallesOf, gbc_pnlDetallesOf);
 		GridBagLayout gbl_pnlDetallesOf = new GridBagLayout();
 		gbl_pnlDetallesOf.columnWidths = new int[] { 194, 0 };
-		gbl_pnlDetallesOf.rowHeights = new int[] { 53, 175, 42, 29, 0 };
+		gbl_pnlDetallesOf.rowHeights = new int[] { 0, 0, 39, 175, 23, 41, 0, 0 };
 		gbl_pnlDetallesOf.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
-		gbl_pnlDetallesOf.rowWeights = new double[] { 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_pnlDetallesOf.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		pnlDetallesOf.setLayout(gbl_pnlDetallesOf);
+
+		lblNombre_1 = new JLabel("Nombre:");
+		GridBagConstraints gbc_lblNombre_1 = new GridBagConstraints();
+		gbc_lblNombre_1.anchor = GridBagConstraints.WEST;
+		gbc_lblNombre_1.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNombre_1.gridx = 0;
+		gbc_lblNombre_1.gridy = 0;
+		pnlDetallesOf.add(lblNombre_1, gbc_lblNombre_1);
+
+		txtNombreOf = new JTextField();
+		GridBagConstraints gbc_txtNombreOf = new GridBagConstraints();
+		gbc_txtNombreOf.insets = new Insets(0, 0, 5, 0);
+		gbc_txtNombreOf.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtNombreOf.gridx = 0;
+		gbc_txtNombreOf.gridy = 1;
+		pnlDetallesOf.add(txtNombreOf, gbc_txtNombreOf);
+		txtNombreOf.setColumns(10);
 
 		lblDescripcin = new JLabel("Descripción:");
 		GridBagConstraints gbc_lblDescripcin = new GridBagConstraints();
 		gbc_lblDescripcin.fill = GridBagConstraints.BOTH;
 		gbc_lblDescripcin.insets = new Insets(0, 0, 5, 0);
 		gbc_lblDescripcin.gridx = 0;
-		gbc_lblDescripcin.gridy = 0;
+		gbc_lblDescripcin.gridy = 2;
 		pnlDetallesOf.add(lblDescripcin, gbc_lblDescripcin);
 
 		txtDesc = new JTextField();
@@ -1270,7 +1428,7 @@ public class Principal {
 		gbc_txtDesc.fill = GridBagConstraints.BOTH;
 		gbc_txtDesc.insets = new Insets(0, 0, 5, 0);
 		gbc_txtDesc.gridx = 0;
-		gbc_txtDesc.gridy = 1;
+		gbc_txtDesc.gridy = 3;
 		pnlDetallesOf.add(txtDesc, gbc_txtDesc);
 		txtDesc.setColumns(10);
 
@@ -1279,7 +1437,7 @@ public class Principal {
 		gbc_lblValidaHasta.fill = GridBagConstraints.BOTH;
 		gbc_lblValidaHasta.insets = new Insets(0, 0, 5, 0);
 		gbc_lblValidaHasta.gridx = 0;
-		gbc_lblValidaHasta.gridy = 2;
+		gbc_lblValidaHasta.gridy = 4;
 		pnlDetallesOf.add(lblValidaHasta, gbc_lblValidaHasta);
 
 		dateChooser = new JDateChooser();
@@ -1287,10 +1445,20 @@ public class Principal {
 				new ImageIcon(Principal.class.getResource("/com/toedter/calendar/images/JCalendarColor32.gif")));
 		dateChooser.setDateFormatString("dd-MM-yyyy");
 		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
+		gbc_dateChooser.insets = new Insets(0, 0, 5, 0);
 		gbc_dateChooser.fill = GridBagConstraints.HORIZONTAL;
 		gbc_dateChooser.gridx = 0;
-		gbc_dateChooser.gridy = 3;
+		gbc_dateChooser.gridy = 5;
 		pnlDetallesOf.add(dateChooser, gbc_dateChooser);
+
+		btnModificarImagen = new JButton("Modificar imagen");
+		btnModificarImagen.addActionListener(new BtnModificarImagenActionListener());
+		btnModificarImagen.setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/frame-landscape.png")));
+		GridBagConstraints gbc_btnModificarImagen = new GridBagConstraints();
+		gbc_btnModificarImagen.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnModificarImagen.gridx = 0;
+		gbc_btnModificarImagen.gridy = 6;
+		pnlDetallesOf.add(btnModificarImagen, gbc_btnModificarImagen);
 
 		pnlEnvioOf = new JPanel();
 		pnlEnvioOf.setBorder(new TitledBorder(null, "Envio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -1333,6 +1501,17 @@ public class Principal {
 		pnlEnvioOf.add(scrollPaneCVIP, gbc_scrollPaneCVIP);
 
 		listCVIP = new JList();
+		listCVIP.setModel(new DefaultListModel() {
+			String[] values = new String[] { "Ana Martín", "Pedro Serrano", "Carlos Gallego" };
+
+			public int getSize() {
+				return values.length;
+			}
+
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
 		scrollPaneCVIP.setViewportView(listCVIP);
 
 		scrollPaneEnv = new JScrollPane();
@@ -1345,9 +1524,12 @@ public class Principal {
 		pnlEnvioOf.add(scrollPaneEnv, gbc_scrollPaneEnv);
 
 		listEnv = new JList();
+		modelolistaOf = new DefaultListModel();
+		listEnv.setModel(modelolistaOf);
 		scrollPaneEnv.setViewportView(listEnv);
 
 		btnSeleccionar = new JButton("Seleccionar");
+		btnSeleccionar.addActionListener(new BtnSeleccionarActionListener());
 		btnSeleccionar.setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/scroll-arrow-to-right.png")));
 		GridBagConstraints gbc_btnSeleccionar = new GridBagConstraints();
 		gbc_btnSeleccionar.gridwidth = 2;
@@ -1357,6 +1539,7 @@ public class Principal {
 		pnlEnvioOf.add(btnSeleccionar, gbc_btnSeleccionar);
 
 		btnEliminar_1 = new JButton("Eliminar");
+		btnEliminar_1.addActionListener(new BtnEliminar_1ActionListener());
 		btnEliminar_1.setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/scroll-arrow-to-left.png")));
 		GridBagConstraints gbc_btnEliminar_1 = new GridBagConstraints();
 		gbc_btnEliminar_1.gridwidth = 2;
@@ -1366,6 +1549,7 @@ public class Principal {
 		pnlEnvioOf.add(btnEliminar_1, gbc_btnEliminar_1);
 
 		btnEnviar = new JButton("Enviar");
+		btnEnviar.addActionListener(new BtnEnviarActionListener());
 		btnEnviar.setIcon(
 				new ImageIcon(Principal.class.getResource("/Presentacion/black-back-closed-envelope-shape.png")));
 		GridBagConstraints gbc_btnEnviar = new GridBagConstraints();
@@ -1592,7 +1776,6 @@ public class Principal {
 
 	private class TreeTreeSelectionListener implements TreeSelectionListener {
 		public void valueChanged(TreeSelectionEvent e) {
-			System.out.println(e.getPath().getLastPathComponent().toString().equals("Pizzas"));
 			if (e.getPath().getLastPathComponent().toString().equals("Pizzas")) {
 				for (int i = 0; i < 5; i++) {
 					imagenes[i] = new JLabel(String.valueOf(i));
@@ -1600,7 +1783,7 @@ public class Principal {
 					imagenes[i].setHorizontalAlignment(SwingConstants.CENTER);
 
 					imagenes[i].setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/pizza" + i + ".jpg")));
-					imagenes[i].setText(pizzas[i]);
+					imagenes[i].setText("Pizza " + pizzas[i]);
 					imagenes[i].setHorizontalTextPosition(SwingConstants.CENTER);
 					imagenes[i].setVerticalTextPosition(SwingConstants.BOTTOM);
 
@@ -1626,19 +1809,23 @@ public class Principal {
 		}
 	}
 
+	private ImageIcon seleccionar_label() {
+		JFileChooser fcAbrir = new JFileChooser();
+		int valorDevuelto = fcAbrir.showOpenDialog(frame);
+		if (valorDevuelto == JFileChooser.APPROVE_OPTION) {
+			File file = fcAbrir.getSelectedFile();
+			imagen = new ImageIcon(file.getAbsolutePath());
+		}
+		return imagen;
+	}
+
 	private class BtnCargarMapaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			
-			JFileChooser fcAbrir = new JFileChooser();
-			int valorDevuelto = fcAbrir.showOpenDialog(frame);
-			if (valorDevuelto == JFileChooser.APPROVE_OPTION) {
-				File file = fcAbrir.getSelectedFile();
-				imagen = new ImageIcon(file.getAbsolutePath());
-				miAreaDibujo.setIcon(imagen);
-				miAreaDibujo.getObjetosGraficos().clear();
-			}
+			miAreaDibujo.setIcon(seleccionar_label());
+			miAreaDibujo.getObjetosGraficos().clear();
 		}
 	}
+
 	private class LblMapaMouseListener extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
@@ -1656,6 +1843,82 @@ public class Principal {
 					break;
 				}
 			}
+		}
+	}
+
+	private class Button_2ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (modelolista.getSize() > 0) {
+				if (JOptionPane.showConfirmDialog(frame, "¿Seguro que quieres enviar los menús?", "Envio de menús",
+						JOptionPane.YES_NO_OPTION) == 0) {
+					JOptionPane.showMessageDialog(frame, "Los menús han sido enviados", "Información",
+							JOptionPane.INFORMATION_MESSAGE);
+					modelolista.removeAllElements();
+				}
+			}
+		}
+	}
+
+	private class BtnEnviarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (modelolistaOf.getSize() > 0) {
+				if (JOptionPane.showConfirmDialog(frame, "¿Seguro que quieres enviar las ofertas?", "Envio de ofertas",
+						JOptionPane.YES_NO_OPTION) == 0) {
+					JOptionPane.showMessageDialog(frame, "Las ofertas han sido enviadas", "Información",
+							JOptionPane.INFORMATION_MESSAGE);
+					modelolistaOf.removeAllElements();
+				}
+			}
+		}
+	}
+
+	private class BtnSeleccionarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if ((!modelolistaOf.contains(listCVIP.getSelectedValue())) && listCVIP.getSelectedValue() != null)
+				modelolistaOf.addElement(listCVIP.getSelectedValue().toString());
+		}
+	}
+
+	private class BtnEliminar_1ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			modelolistaOf.removeElement(listEnv.getSelectedValue());
+		}
+	}
+
+	private class ButtonActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if ((!modelolista.contains(listVIPMenu.getSelectedValue())) && listVIPMenu.getSelectedValue() != null)
+				modelolista.addElement(listVIPMenu.getSelectedValue().toString());
+		}
+	}
+
+	private class Button_1ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			modelolista.removeElement(listEnvMenu.getSelectedValue());
+		}
+	}
+
+	private class BtnModificarFotoActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			lblImagen.setIcon(seleccionar_label());
+		}
+	}
+
+	private class BtnModificarImagen_1ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			seleccionar_label();
+		}
+	}
+
+	private class BtnImagenActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			seleccionar_label();
+		}
+	}
+
+	private class BtnModificarImagenActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			seleccionar_label();
 		}
 	}
 }
