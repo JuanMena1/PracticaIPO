@@ -67,12 +67,18 @@ public class Ticket {
 	public Ticket() {
 		initialize();
 	}
-	
-	
 
 	public JFrame getFrame() {
 		return frmTicket;
 	}
+
+	public JTextField getMetodoPago() {
+		return txtMetodoDePago;
+	}
+	public JTextField getLeAtendio() {
+		return 	txtLeAtendio;
+	}
+
 
 	/**
 	 * Initialize the contents of the frame.
@@ -84,12 +90,13 @@ public class Ticket {
 		frmTicket.setBounds(600, 150, 537, 689);
 		frmTicket.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{101, 89, 151, 123, 61, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 23, 0, 9, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[] { 101, 89, 151, 123, 61, 0, 0 };
+		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 23, 0, 9, 0 };
+		gridBagLayout.columnWeights = new double[] { 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				0.0, Double.MIN_VALUE };
 		frmTicket.getContentPane().setLayout(gridBagLayout);
-		
+
 		lblCliente = new JLabel("Cliente:");
 		GridBagConstraints gbc_lblCliente = new GridBagConstraints();
 		gbc_lblCliente.anchor = GridBagConstraints.WEST;
@@ -97,7 +104,7 @@ public class Ticket {
 		gbc_lblCliente.gridx = 0;
 		gbc_lblCliente.gridy = 1;
 		frmTicket.getContentPane().add(lblCliente, gbc_lblCliente);
-		
+
 		txtCliente = new JTextField();
 		txtCliente.setEditable(false);
 		txtCliente.setBorder(null);
@@ -111,7 +118,7 @@ public class Ticket {
 		gbc_txtCliente.gridy = 1;
 		frmTicket.getContentPane().add(txtCliente, gbc_txtCliente);
 		txtCliente.setColumns(10);
-		
+
 		lblClienteVip = new JLabel("Cliente VIP:");
 		GridBagConstraints gbc_lblClienteVip = new GridBagConstraints();
 		gbc_lblClienteVip.anchor = GridBagConstraints.WEST;
@@ -119,7 +126,7 @@ public class Ticket {
 		gbc_lblClienteVip.gridx = 0;
 		gbc_lblClienteVip.gridy = 2;
 		frmTicket.getContentPane().add(lblClienteVip, gbc_lblClienteVip);
-		
+
 		txtClienteVip = new JTextField();
 		txtClienteVip.setEditable(false);
 		txtClienteVip.setBorder(null);
@@ -132,7 +139,7 @@ public class Ticket {
 		gbc_txtClienteVip.gridy = 2;
 		frmTicket.getContentPane().add(txtClienteVip, gbc_txtClienteVip);
 		txtClienteVip.setColumns(10);
-		
+
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 5;
@@ -141,28 +148,22 @@ public class Ticket {
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 3;
 		frmTicket.getContentPane().add(scrollPane, gbc_scrollPane);
-		
+
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Nombre del producto", "Cantidad", "Precio"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, Integer.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-			boolean[] columnEditables = new boolean[] {
-				false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
+		table.setModel(
+				new DefaultTableModel(new Object[][] {}, new String[] { "Nombre del producto", "Cantidad", "Precio" }) {
+					Class[] columnTypes = new Class[] { String.class, Integer.class, String.class };
+
+					public Class getColumnClass(int columnIndex) {
+						return columnTypes[columnIndex];
+					}
+
+					boolean[] columnEditables = new boolean[] { false, false, false };
+
+					public boolean isCellEditable(int row, int column) {
+						return columnEditables[column];
+					}
+				});
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(80);
 		table.getColumnModel().getColumn(0).setMinWidth(20);
@@ -173,7 +174,7 @@ public class Ticket {
 		table.getColumnModel().getColumn(2).setPreferredWidth(70);
 		table.getColumnModel().getColumn(2).setMinWidth(10);
 		scrollPane.setViewportView(table);
-		
+
 		lblTotal = new JLabel("Total:");
 		GridBagConstraints gbc_lblTotal = new GridBagConstraints();
 		gbc_lblTotal.anchor = GridBagConstraints.WEST;
@@ -181,7 +182,7 @@ public class Ticket {
 		gbc_lblTotal.gridx = 3;
 		gbc_lblTotal.gridy = 4;
 		frmTicket.getContentPane().add(lblTotal, gbc_lblTotal);
-		
+
 		txtTotal = new JTextField();
 		txtTotal.setBorder(null);
 		txtTotal.setHorizontalAlignment(SwingConstants.LEFT);
@@ -195,7 +196,7 @@ public class Ticket {
 		gbc_txtTotal.gridy = 4;
 		frmTicket.getContentPane().add(txtTotal, gbc_txtTotal);
 		txtTotal.setColumns(10);
-		
+
 		lblPuntosRecibidos = new JLabel("Puntos recibidos:");
 		GridBagConstraints gbc_lblPuntosRecibidos = new GridBagConstraints();
 		gbc_lblPuntosRecibidos.anchor = GridBagConstraints.WEST;
@@ -203,7 +204,7 @@ public class Ticket {
 		gbc_lblPuntosRecibidos.gridx = 3;
 		gbc_lblPuntosRecibidos.gridy = 5;
 		frmTicket.getContentPane().add(lblPuntosRecibidos, gbc_lblPuntosRecibidos);
-		
+
 		txtPuntosRecibidos = new JTextField();
 		txtPuntosRecibidos.setBorder(null);
 		txtPuntosRecibidos.setHorizontalAlignment(SwingConstants.LEFT);
@@ -217,7 +218,7 @@ public class Ticket {
 		gbc_txtPuntosRecibidos.gridy = 5;
 		frmTicket.getContentPane().add(txtPuntosRecibidos, gbc_txtPuntosRecibidos);
 		txtPuntosRecibidos.setColumns(10);
-		
+
 		lblDescuento = new JLabel("Descuento:");
 		GridBagConstraints gbc_lblDescuento = new GridBagConstraints();
 		gbc_lblDescuento.anchor = GridBagConstraints.WEST;
@@ -225,7 +226,7 @@ public class Ticket {
 		gbc_lblDescuento.gridx = 3;
 		gbc_lblDescuento.gridy = 6;
 		frmTicket.getContentPane().add(lblDescuento, gbc_lblDescuento);
-		
+
 		txtDescuento = new JTextField();
 		txtDescuento.setBorder(null);
 		txtDescuento.setHorizontalAlignment(SwingConstants.LEFT);
@@ -238,7 +239,7 @@ public class Ticket {
 		gbc_txtDescuento.gridy = 6;
 		frmTicket.getContentPane().add(txtDescuento, gbc_txtDescuento);
 		txtDescuento.setColumns(10);
-		
+
 		lblEnvioADomocilio = new JLabel("Envio a domocilio:");
 		GridBagConstraints gbc_lblEnvioADomocilio = new GridBagConstraints();
 		gbc_lblEnvioADomocilio.anchor = GridBagConstraints.WEST;
@@ -246,7 +247,7 @@ public class Ticket {
 		gbc_lblEnvioADomocilio.gridx = 3;
 		gbc_lblEnvioADomocilio.gridy = 7;
 		frmTicket.getContentPane().add(lblEnvioADomocilio, gbc_lblEnvioADomocilio);
-		
+
 		txtEnvioADomocilio = new JTextField();
 		txtEnvioADomocilio.setBorder(null);
 		txtEnvioADomocilio.setHorizontalAlignment(SwingConstants.LEFT);
@@ -259,7 +260,7 @@ public class Ticket {
 		gbc_txtEnvioADomocilio.gridy = 7;
 		frmTicket.getContentPane().add(txtEnvioADomocilio, gbc_txtEnvioADomocilio);
 		txtEnvioADomocilio.setColumns(10);
-		
+
 		lblImporteTotal = new JLabel("Importe Total:");
 		lblImporteTotal.setFont(new Font("Tahoma", Font.BOLD, 17));
 		GridBagConstraints gbc_lblImporteTotal = new GridBagConstraints();
@@ -268,7 +269,7 @@ public class Ticket {
 		gbc_lblImporteTotal.gridx = 1;
 		gbc_lblImporteTotal.gridy = 9;
 		frmTicket.getContentPane().add(lblImporteTotal, gbc_lblImporteTotal);
-		
+
 		txtImporteTotal = new JTextField();
 		txtImporteTotal.setBorder(null);
 		txtImporteTotal.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -282,7 +283,7 @@ public class Ticket {
 		gbc_txtImporteTotal.gridy = 9;
 		frmTicket.getContentPane().add(txtImporteTotal, gbc_txtImporteTotal);
 		txtImporteTotal.setColumns(10);
-		
+
 		lblMtodoDePago = new JLabel("Método de pago:");
 		lblMtodoDePago.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblMtodoDePago = new GridBagConstraints();
@@ -291,7 +292,7 @@ public class Ticket {
 		gbc_lblMtodoDePago.gridx = 1;
 		gbc_lblMtodoDePago.gridy = 10;
 		frmTicket.getContentPane().add(lblMtodoDePago, gbc_lblMtodoDePago);
-		
+
 		txtMetodoDePago = new JTextField();
 		txtMetodoDePago.setBorder(null);
 		txtMetodoDePago.setHorizontalAlignment(SwingConstants.LEFT);
@@ -304,7 +305,7 @@ public class Ticket {
 		gbc_txtMetodoDePago.gridy = 10;
 		frmTicket.getContentPane().add(txtMetodoDePago, gbc_txtMetodoDePago);
 		txtMetodoDePago.setColumns(10);
-		
+
 		lblLeAtendi = new JLabel("Le atendió:");
 		GridBagConstraints gbc_lblLeAtendi = new GridBagConstraints();
 		gbc_lblLeAtendi.gridwidth = 2;
@@ -312,7 +313,7 @@ public class Ticket {
 		gbc_lblLeAtendi.gridx = 1;
 		gbc_lblLeAtendi.gridy = 11;
 		frmTicket.getContentPane().add(lblLeAtendi, gbc_lblLeAtendi);
-		
+
 		txtLeAtendio = new JTextField();
 		txtLeAtendio.setBorder(null);
 		txtLeAtendio.setHorizontalAlignment(SwingConstants.LEFT);
@@ -325,7 +326,7 @@ public class Ticket {
 		gbc_txtLeAtendio.gridy = 11;
 		frmTicket.getContentPane().add(txtLeAtendio, gbc_txtLeAtendio);
 		txtLeAtendio.setColumns(10);
-		
+
 		btnImprimir = new JButton("Imprimir");
 		btnImprimir.setIcon(new ImageIcon(Ticket.class.getResource("/Presentacion/printer.png")));
 		GridBagConstraints gbc_btnImprimir = new GridBagConstraints();
