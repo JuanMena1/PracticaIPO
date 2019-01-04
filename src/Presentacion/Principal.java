@@ -148,7 +148,6 @@ public class Principal {
 	private JButton btnEditarOferta;
 	private JButton btnBorrarOferta;
 	private JScrollPane scrollPane_3;
-	private JList list_2;
 	private JPanel pnlDetallesOf;
 	private JPanel pnlEnvioOf;
 	private JLabel lblDescripcin;
@@ -187,7 +186,6 @@ public class Principal {
 	private JButton btnAadirMen;
 	private JButton btnEditarMen;
 	private JButton btnBorrarMen;
-	private JList list_3;
 	private JList listVIPMenu;
 	private JList listEnvMenu;
 	private JPanel tabReparto;
@@ -205,7 +203,6 @@ public class Principal {
 	private JRadioButton rdbtnFro;
 	private JLabel lblHoraAproximadaDe;
 	private final ButtonGroup buttonGroup_2 = new ButtonGroup();
-	private JTextField txtHoraEntrega;
 	private JScrollPane scrollPane_8;
 	private JTable table;
 	private JScrollPane scrollPane_9;
@@ -215,7 +212,25 @@ public class Principal {
 	private JDateChooser dateChooser;
 	private ImageIcon imagen;
 	private JLabel[] imagenes = new JLabel[5];
-	private String pizzas[] = new String[] { "Margarita", "Campesina", "Barbacoa", "Marinera", "4 Quesos" };
+	private String ensaladas[] = new String[] { "Ensalada griega", "Ensalada césar", "Ensalada clásica",
+			"Ensalada ahumados", "Ensalada inglesa" };
+	private String arroces[] = new String[] { "Arroz negro con sepia", "Arroz a banda", "Paella de marisco",
+			"Espaguetis boloñesa", "Espaguetis carbonara" };
+	private String pescados[] = new String[] { "Dorada al horno", "Lubina a la plancha", "Atún a la plancha",
+			"Bacalao al pil-pil", "Sardinas al horno" };
+	private String asados[] = new String[] { "Pollo asado", "Costillas de cerdo", "Chuletón de ternera",
+			"Chuletas de cordero", "Codillo al horno" };
+	private String pizzas[] = new String[] { "Pizza Margarita", "Pizza Campesina", "Pizza Barbacoa", "Pizza Marinera",
+			"Pizza 4 Quesos" };
+	private String hamburguesas[] = new String[] { "Hamburguesa normal", "Hamburguesa especial", "Hamburguesa doble",
+			"Hamburguesa vegetal", "Hamburguesa de pollo" };
+	private String bocadillos[] = new String[] { "Bocadillo jamón", "Bocadillo lomo", "Bocadillo pechuga de pollo",
+			"Bocadillo tortilla", "Bocadillo bacon" };
+	private String postres[] = new String[] { "Profiteroles", "Flan de queso", "Brocheta de frutas",
+			"Tarta de chocolate", "Fresas con nata" };
+	private String bebidas[] = new String[] { "Coca-cola", "Fanta naranja", "Fanta limón", "Nestea", "Agua" };
+	private String menus[] = new String[] { "Menú Italia", "Menú infantil", "Menu low cost" };
+	private String ofertas[] = new String[] { "Postre gratis", "-20% cliente VIP" };
 	private JTree tree;
 	private JPanel panelCard;
 	private JToolBar toolBar;
@@ -247,6 +262,9 @@ public class Principal {
 	private JButton btnModificarImagen;
 	private JButton btnModificarFoto;
 	private JButton btnModificarImagen_1;
+	private JPanel pnlMenu;
+	private JPanel pnlOfertas;
+	private JTextField txtHoraentrega;
 
 	/**
 	 * Launch the application.
@@ -302,9 +320,9 @@ public class Principal {
 		tabpnlCliente.addTab("Información personal",
 				new ImageIcon(Principal.class.getResource("/Presentacion/user.png")), Clientes, null);
 		GridBagLayout gbl_Clientes = new GridBagLayout();
-		gbl_Clientes.columnWidths = new int[] { 0, 62, 92, 46, 567, 40, 0 };
+		gbl_Clientes.columnWidths = new int[] { 0, 62, 92, 74, 665, 40, 0 };
 		gbl_Clientes.rowHeights = new int[] { 0, 153, 0, 0, 0, 0, 0 };
-		gbl_Clientes.columnWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_Clientes.columnWeights = new double[] { 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
 		gbl_Clientes.rowWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		Clientes.setLayout(gbl_Clientes);
 
@@ -343,20 +361,20 @@ public class Principal {
 		gbc_panel.gridy = 1;
 		Clientes.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 88, 78, 51, 0, 49, 0, 0 };
-		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 61, 0 };
+		gbl_panel.columnWidths = new int[] { 88, 117, 51, 0, 49, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 52, 0, 0, 0, 0, 0, 0, 0, 0, 61, 0 };
 		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
 		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
-		lblImagen = new JLabel("Imagen");
+		lblImagen = new JLabel("");
 		lblImagen.setForeground(Color.BLACK);
 		GridBagConstraints gbc_lblImagen = new GridBagConstraints();
 		gbc_lblImagen.gridwidth = 2;
-		gbc_lblImagen.gridheight = 5;
+		gbc_lblImagen.gridheight = 6;
 		gbc_lblImagen.insets = new Insets(0, 0, 5, 5);
 		gbc_lblImagen.gridx = 0;
-		gbc_lblImagen.gridy = 1;
+		gbc_lblImagen.gridy = 0;
 		panel.add(lblImagen, gbc_lblImagen);
 
 		lblId = new JLabel("ID:");
@@ -572,7 +590,7 @@ public class Principal {
 				new ImageIcon(Principal.class.getResource("/Presentacion/history-clock-button.png")), tabHist, null);
 		GridBagLayout gbl_tabHist = new GridBagLayout();
 		gbl_tabHist.columnWidths = new int[] { 0, 147, 139, 0, 0, 0 };
-		gbl_tabHist.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_tabHist.rowHeights = new int[] { 0, 291, 0, 0, 0, 0, 0, 0 };
 		gbl_tabHist.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		gbl_tabHist.rowWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		tabHist.setLayout(gbl_tabHist);
@@ -593,7 +611,7 @@ public class Principal {
 								"C/ Concepci\u00F3n Arenal 3 4\u00AAA  Ciudad Real" },
 						{ new Integer(3), "A domicilio", "11/11/2018", "27.97",
 								"C/ Concepci\u00F3n Arenal 3 4\u00AAA  Ciudad Real" }, },
-				new String[] { "N\u00BA pedido", "Tipo", "Fecha", "Importe", "Direcci\u00F3n" }) {
+				new String[] { "N\u00BA pedido", "Tipo", "Fecha", "Importe (\u20AC)", "Direcci\u00F3n" }) {
 			Class[] columnTypes = new Class[] { Integer.class, String.class, String.class, String.class, String.class };
 
 			public Class getColumnClass(int columnIndex) {
@@ -612,6 +630,7 @@ public class Principal {
 		scrollPane_8.setViewportView(table);
 
 		lblPuntosAcumulados = new JLabel("Puntos acumulados:");
+		lblPuntosAcumulados.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_lblPuntosAcumulados = new GridBagConstraints();
 		gbc_lblPuntosAcumulados.anchor = GridBagConstraints.WEST;
 		gbc_lblPuntosAcumulados.insets = new Insets(0, 0, 5, 5);
@@ -620,6 +639,7 @@ public class Principal {
 		tabHist.add(lblPuntosAcumulados, gbc_lblPuntosAcumulados);
 
 		txtPuntosAcumulados = new JTextField();
+		txtPuntosAcumulados.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtPuntosAcumulados.setText("6 puntos");
 		txtPuntosAcumulados.setBorder(null);
 		txtPuntosAcumulados.setBackground(SystemColor.menu);
@@ -632,6 +652,7 @@ public class Principal {
 		txtPuntosAcumulados.setColumns(10);
 
 		lblPuntosCanjeados = new JLabel("Puntos canjeados:");
+		lblPuntosCanjeados.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_lblPuntosCanjeados = new GridBagConstraints();
 		gbc_lblPuntosCanjeados.anchor = GridBagConstraints.WEST;
 		gbc_lblPuntosCanjeados.insets = new Insets(0, 0, 5, 5);
@@ -640,6 +661,7 @@ public class Principal {
 		tabHist.add(lblPuntosCanjeados, gbc_lblPuntosCanjeados);
 
 		txtPuntosCanjeados = new JTextField();
+		txtPuntosCanjeados.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtPuntosCanjeados.setText("0 puntos");
 		txtPuntosCanjeados.setBorder(null);
 		txtPuntosCanjeados.setBackground(SystemColor.menu);
@@ -652,6 +674,7 @@ public class Principal {
 		txtPuntosCanjeados.setColumns(10);
 
 		lblCaducidadDePuntos = new JLabel("Caducidad de puntos:");
+		lblCaducidadDePuntos.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_lblCaducidadDePuntos = new GridBagConstraints();
 		gbc_lblCaducidadDePuntos.anchor = GridBagConstraints.WEST;
 		gbc_lblCaducidadDePuntos.insets = new Insets(0, 0, 5, 5);
@@ -660,6 +683,7 @@ public class Principal {
 		tabHist.add(lblCaducidadDePuntos, gbc_lblCaducidadDePuntos);
 
 		txtCaducidadPuntos = new JTextField();
+		txtCaducidadPuntos.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtCaducidadPuntos.setText("30/01/2019");
 		txtCaducidadPuntos.setBorder(null);
 		txtCaducidadPuntos.setBackground(SystemColor.menu);
@@ -940,18 +964,16 @@ public class Principal {
 
 		tablePedidos = new JTable();
 		tablePedidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tablePedidos.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"1", "En elaboraci\u00F3n", "A domicilio", "11/11/2018", "21:30", Boolean.TRUE, "Ana Mart\u00EDn", "VIP01", Boolean.TRUE, new Double(27.97), "C/Concepci\u00F3n Arenal 3 4\u00BAA Ciudad Real"},
-				{"2", "Preparado", "A recoger", "20/12/2018", "22:00", Boolean.FALSE, "Pedro Gallego", "CL02", null, new Double(16.99), "-"},
-			},
-			new String[] {
-				"ID", "Estado", "Tipo", "Fecha", "Hora", "Pagado", "Cliente", "ID Cliente", "VIP", "Importe", "Direcci\u00F3n"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Object.class, String.class, String.class, String.class, String.class, Boolean.class, String.class, String.class, Boolean.class, Double.class, String.class
-			};
+		tablePedidos.setModel(new DefaultTableModel(new Object[][] {
+				{ "1", "En elaboraci\u00F3n", "A domicilio", "11/11/2018", "21:30", Boolean.TRUE, "Ana Mart\u00EDn",
+						"VIP01", Boolean.TRUE, new Double(27.97), "C/Concepci\u00F3n Arenal 3 4\u00BAA Ciudad Real" },
+				{ "2", "Preparado", "A recoger", "20/12/2018", "22:00", Boolean.FALSE, "Pedro Gallego", "CL02", null,
+						new Double(16.99), "-" }, },
+				new String[] { "ID", "Estado", "Tipo", "Fecha", "Hora", "Pagado", "Cliente", "ID Cliente", "VIP",
+						"Importe", "Direcci\u00F3n" }) {
+			Class[] columnTypes = new Class[] { Object.class, String.class, String.class, String.class, String.class,
+					Boolean.class, String.class, String.class, Boolean.class, Double.class, String.class };
+
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
@@ -1031,20 +1053,12 @@ public class Principal {
 		panelProductos.add(scrollPane_2, gbc_scrollPane_2);
 
 		tableProductos = new JTable();
-		tableProductos
-				.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Pizza Barbacoa", "x1", new Double(7.99)},
-				{"Costillas de cerdo", "x2", new Double(16.98)},
-				{"Coca-Cola", "x2", new Double(3.0)},
-			},
-			new String[] {
-				"Nombre", "Cantidad", "Precio"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, Double.class
-			};
+		tableProductos.setModel(new DefaultTableModel(
+				new Object[][] { { "Pizza Barbacoa", "x1", new Double(7.99) },
+						{ "Costillas de cerdo", "x2", new Double(16.98) }, { "Coca-Cola", "x2", new Double(3.0) }, },
+				new String[] { "Nombre", "Cantidad", "Precio" }) {
+			Class[] columnTypes = new Class[] { String.class, String.class, Double.class };
+
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
@@ -1154,8 +1168,22 @@ public class Principal {
 		gbc_scrollPane_4.gridy = 1;
 		tabMenu.add(scrollPane_4, gbc_scrollPane_4);
 
-		list_3 = new JList();
-		scrollPane_4.setViewportView(list_3);
+		pnlMenu = new JPanel();
+		
+		for (int i = 0; i < 3; i++) {
+			imagenes[i] = new JLabel(String.valueOf(i));
+			imagenes[i].setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			imagenes[i].setHorizontalAlignment(SwingConstants.CENTER);
+
+			imagenes[i].setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/menu" + i + ".jpg")));
+			imagenes[i].setText(menus[i]);
+			imagenes[i].setHorizontalTextPosition(SwingConstants.CENTER);
+			imagenes[i].setVerticalTextPosition(SwingConstants.BOTTOM);
+
+			pnlMenu.add(imagenes[i]);
+		}
+		
+		scrollPane_4.setViewportView(pnlMenu);
 
 		panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(null, "Detalles", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -1380,8 +1408,22 @@ public class Principal {
 		gbc_scrollPane_3.gridy = 1;
 		tabOfertas.add(scrollPane_3, gbc_scrollPane_3);
 
-		list_2 = new JList();
-		scrollPane_3.setViewportView(list_2);
+		pnlOfertas = new JPanel();
+		
+		for (int i = 0; i < 2; i++) {
+			imagenes[i] = new JLabel(String.valueOf(i));
+			imagenes[i].setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			imagenes[i].setHorizontalAlignment(SwingConstants.CENTER);
+
+			imagenes[i].setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/oferta" + i + ".jpg")));
+			imagenes[i].setText(ofertas[i]);
+			imagenes[i].setHorizontalTextPosition(SwingConstants.CENTER);
+			imagenes[i].setVerticalTextPosition(SwingConstants.BOTTOM);
+
+			pnlOfertas.add(imagenes[i]);
+		}
+		
+		scrollPane_3.setViewportView(pnlOfertas);
 
 		pnlDetallesOf = new JPanel();
 		pnlDetallesOf.setBorder(new TitledBorder(null, "Detalles", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -1659,7 +1701,7 @@ public class Principal {
 		GridBagLayout gbl_pnlDetallesPedido = new GridBagLayout();
 		gbl_pnlDetallesPedido.columnWidths = new int[] { 0, 187, 129, 0, 0 };
 		gbl_pnlDetallesPedido.rowHeights = new int[] { 0, 0, 0, 0, 0, 27, 45, 0 };
-		gbl_pnlDetallesPedido.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_pnlDetallesPedido.columnWeights = new double[] { 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
 		gbl_pnlDetallesPedido.rowWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		pnlDetallesPedido.setLayout(gbl_pnlDetallesPedido);
 
@@ -1673,26 +1715,29 @@ public class Principal {
 		pnlDetallesPedido.add(scrollPane_9, gbc_scrollPane_9);
 
 		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Orden", "Direcci\u00F3n", "VIP" }) {
-			Class[] columnTypes = new Class[] { Integer.class, String.class, String.class };
-
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+				{new Integer(1), "C/Concepci\u00F3n Arenal 3 4\u00BAA", Boolean.TRUE},
+				{new Integer(2), "C/ Calle Toledo 89", null},
+			},
+			new String[] {
+				"Orden", "Direcci\u00F3n", "VIP"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Integer.class, String.class, Boolean.class
+			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-
-			boolean[] columnEditables = new boolean[] { false, false, false };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
 		});
 		table_1.getColumnModel().getColumn(0).setResizable(false);
-		table_1.getColumnModel().getColumn(0).setPreferredWidth(70);
+		table_1.getColumnModel().getColumn(0).setPreferredWidth(15);
 		table_1.getColumnModel().getColumn(0).setMinWidth(10);
-		table_1.getColumnModel().getColumn(1).setPreferredWidth(85);
+		table_1.getColumnModel().getColumn(1).setPreferredWidth(200);
 		table_1.getColumnModel().getColumn(1).setMinWidth(25);
 		table_1.getColumnModel().getColumn(2).setResizable(false);
-		table_1.getColumnModel().getColumn(2).setPreferredWidth(70);
+		table_1.getColumnModel().getColumn(2).setPreferredWidth(15);
 		table_1.getColumnModel().getColumn(2).setMinWidth(10);
 		scrollPane_9.setViewportView(table_1);
 
@@ -1705,6 +1750,7 @@ public class Principal {
 		pnlDetallesPedido.add(chckbxPagado, gbc_chckbxPagado);
 
 		rdbtnCaliente = new JRadioButton("Caliente");
+		rdbtnCaliente.setSelected(true);
 		buttonGroup_2.add(rdbtnCaliente);
 		GridBagConstraints gbc_rdbtnCaliente = new GridBagConstraints();
 		gbc_rdbtnCaliente.anchor = GridBagConstraints.WEST;
@@ -1714,6 +1760,7 @@ public class Principal {
 		pnlDetallesPedido.add(rdbtnCaliente, gbc_rdbtnCaliente);
 
 		rdbtnFro = new JRadioButton("Frío");
+		rdbtnFro.setHorizontalAlignment(SwingConstants.LEFT);
 		buttonGroup_2.add(rdbtnFro);
 		GridBagConstraints gbc_rdbtnFro = new GridBagConstraints();
 		gbc_rdbtnFro.anchor = GridBagConstraints.WEST;
@@ -1729,17 +1776,19 @@ public class Principal {
 		gbc_lblHoraAproximadaDe.gridx = 1;
 		gbc_lblHoraAproximadaDe.gridy = 5;
 		pnlDetallesPedido.add(lblHoraAproximadaDe, gbc_lblHoraAproximadaDe);
-
-		txtHoraEntrega = new JTextField();
-		txtHoraEntrega.setBackground(SystemColor.menu);
-		txtHoraEntrega.setBorder(null);
-		GridBagConstraints gbc_txtHoraEntrega = new GridBagConstraints();
-		gbc_txtHoraEntrega.anchor = GridBagConstraints.WEST;
-		gbc_txtHoraEntrega.insets = new Insets(0, 0, 5, 5);
-		gbc_txtHoraEntrega.gridx = 2;
-		gbc_txtHoraEntrega.gridy = 5;
-		pnlDetallesPedido.add(txtHoraEntrega, gbc_txtHoraEntrega);
-		txtHoraEntrega.setColumns(10);
+		
+		txtHoraentrega = new JTextField();
+		txtHoraentrega.setHorizontalAlignment(SwingConstants.LEFT);
+		txtHoraentrega.setBorder(null);
+		txtHoraentrega.setBackground(SystemColor.menu);
+		txtHoraentrega.setText("  22:30");
+		GridBagConstraints gbc_txtHoraentrega = new GridBagConstraints();
+		gbc_txtHoraentrega.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtHoraentrega.insets = new Insets(0, 0, 5, 5);
+		gbc_txtHoraentrega.gridx = 2;
+		gbc_txtHoraentrega.gridy = 5;
+		pnlDetallesPedido.add(txtHoraentrega, gbc_txtHoraentrega);
+		txtHoraentrega.setColumns(10);
 
 	}
 
@@ -1776,22 +1825,63 @@ public class Principal {
 
 	private class TreeTreeSelectionListener implements TreeSelectionListener {
 		public void valueChanged(TreeSelectionEvent e) {
-			if (e.getPath().getLastPathComponent().toString().equals("Pizzas")) {
-				for (int i = 0; i < 5; i++) {
-					imagenes[i] = new JLabel(String.valueOf(i));
-					imagenes[i].setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-					imagenes[i].setHorizontalAlignment(SwingConstants.CENTER);
 
-					imagenes[i].setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/pizza" + i + ".jpg")));
-					imagenes[i].setText("Pizza " + pizzas[i]);
-					imagenes[i].setHorizontalTextPosition(SwingConstants.CENTER);
-					imagenes[i].setVerticalTextPosition(SwingConstants.BOTTOM);
+			String nodo = (e.getPath().getLastPathComponent()).toString();
+			String plato = "";
+			String[] array = new String[5];
 
-					panelCard.add(imagenes[i]);
-				}
-			} else
-				panelCard.removeAll();
-			panelCard.repaint();
+			switch (nodo) {
+			case "Ensaladas":
+				plato = "ensalada";
+				array = ensaladas;
+				break;
+			case "Arroces y pastas":
+				plato = "arrozpasta";
+				array = arroces;
+				break;
+			case "Pescados":
+				plato = "pescados";
+				array = pescados;
+				break;
+			case "Asados":
+				plato = "asados";
+				array = asados;
+				break;
+			case "Pizzas":
+				plato = "pizza";
+				array = pizzas;
+				break;
+			case "Hamburguesas":
+				plato = "hamburguesa";
+				array = hamburguesas;
+				break;
+			case "Bocadillos":
+				plato = "bocadillo";
+				array = bocadillos;
+				break;
+			case "Postres":
+				plato = "postres";
+				array = postres;
+				break;
+			case "Bebidas":
+				plato = "bebidas";
+				array = bebidas;
+				break;
+			}
+			panelCard.removeAll();
+
+			for (int i = 0; i < 5; i++) {
+				imagenes[i] = new JLabel(String.valueOf(i));
+				imagenes[i].setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				imagenes[i].setHorizontalAlignment(SwingConstants.CENTER);
+
+				imagenes[i].setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/" + plato + i + ".jpg")));
+				imagenes[i].setText(array[i]);
+				imagenes[i].setHorizontalTextPosition(SwingConstants.CENTER);
+				imagenes[i].setVerticalTextPosition(SwingConstants.BOTTOM);
+
+				panelCard.add(imagenes[i]);
+			}
 		}
 	}
 
