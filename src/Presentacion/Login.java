@@ -69,7 +69,7 @@ public class Login {
 	private void initialize() {
 		frameLogin = new JFrame();
 		frameLogin.setResizable(false);
-		frameLogin.setTitle("Login");
+		frameLogin.setTitle(MessagesLogin.getString("Login.frameLogin.title")); //$NON-NLS-1$
 		frameLogin.setBounds(100, 100, 547, 353);
 		frameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -77,12 +77,12 @@ public class Login {
 		frameLogin.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		lblUsuario = new JLabel("Usuario:");
+		lblUsuario = new JLabel(MessagesLogin.getString("Login.lblUsuario.text")); //$NON-NLS-1$
 		lblUsuario.setFont(new Font("Verdana", Font.PLAIN, 15));
 		lblUsuario.setBounds(93, 93, 87, 16);
 		panel.add(lblUsuario);
 
-		lblContrasea = new JLabel("Contraseña:");
+		lblContrasea = new JLabel(MessagesLogin.getString("Login.lblContrasea.text")); //$NON-NLS-1$
 		lblContrasea.setFont(new Font("Verdana", Font.PLAIN, 15));
 		lblContrasea.setBounds(93, 137, 97, 16);
 		panel.add(lblContrasea);
@@ -98,19 +98,19 @@ public class Login {
 		passwordField.setBounds(202, 135, 215, 22);
 		panel.add(passwordField);
 
-		btnEntrar = new JButton("Entrar");
+		btnEntrar = new JButton(MessagesLogin.getString("Login.btnEntrar.text")); //$NON-NLS-1$
 		btnEntrar.setIcon(new ImageIcon(Login.class.getResource("/Presentacion/sign-in.png")));
 		btnEntrar.addActionListener(new BtnEntrarActionListener());
 		btnEntrar.setBounds(93, 202, 153, 54);
 		panel.add(btnEntrar);
 
-		btnLimpiar = new JButton("Limpiar");
+		btnLimpiar = new JButton(MessagesLogin.getString("Login.btnLimpiar.text")); //$NON-NLS-1$
 		btnLimpiar.setIcon(new ImageIcon(Login.class.getResource("/Presentacion/double-sided-eraser.png")));
 		btnLimpiar.addActionListener(new BtnLimpiarActionListener());
 		btnLimpiar.setBounds(264, 202, 153, 54);
 		panel.add(btnLimpiar);
 
-		lblTitulo = new JLabel("Bienvenido a nuestro terminal de punto de venta");
+		lblTitulo = new JLabel(MessagesLogin.getString("Login.lblTitulo.text")); //$NON-NLS-1$
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Sitka Subheading", Font.BOLD, 18));
 		lblTitulo.setBounds(49, 23, 441, 46);

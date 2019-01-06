@@ -32,6 +32,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenuItem;
 
 public class Inicio {
 
@@ -46,17 +47,16 @@ public class Inicio {
 	private JLabel lblFoto;
 	private JLabel lblInfo;
 	private JMenuBar menuBar;
-	private JMenu mnIdioma;
 	private JMenu mnFuente;
 	private JMenu mnAyuda;
-	private JRadioButtonMenuItem rdbtnmntmEspaol;
-	private JRadioButtonMenuItem rdbtnmntmIngls;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JRadioButtonMenuItem rdbtnmntmPequea;
 	private JRadioButtonMenuItem rdbtnmntmNormal;
 	private JRadioButtonMenuItem rdbtnmntmGrande;
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	private Principal PrincipalWin;
+	private JMenuItem mntmAyuda;
+	private JMenuItem mntmAcercaDe;
 
 	/**
 	 * Launch the application.
@@ -90,7 +90,7 @@ public class Inicio {
 	 */
 	private void initialize() {
 		frmInicio = new JFrame();
-		frmInicio.setTitle("Inicio");
+		frmInicio.setTitle(MessagesInicio.getString("Inicio.frmInicio.title")); //$NON-NLS-1$
 		frmInicio.setBounds(100, 100, 750, 575);
 		frmInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -103,17 +103,17 @@ public class Inicio {
 		gbl_panel.rowWeights = new double[] { 0.0, 1.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
-		lblFoto = new JLabel("");
-		lblFoto.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/16480.jpg")));
+		lblFoto = new JLabel(""); //$NON-NLS-1$
+		lblFoto.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/16480.jpg"))); //$NON-NLS-1$
 		GridBagConstraints gbc_lblFoto = new GridBagConstraints();
 		gbc_lblFoto.insets = new Insets(0, 0, 5, 5);
 		gbc_lblFoto.gridx = 4;
 		gbc_lblFoto.gridy = 0;
 		panel.add(lblFoto, gbc_lblFoto);
 
-		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm"); //$NON-NLS-1$
 		lblInfo = new JLabel(
-				"<html>Usuario: Admin" + "<br>Último acceso" + "<br>" + formato.format(new Date()) + "</html>");
+				MessagesInicio.getString("Inicio.InicioUsuario") + MessagesInicio.getString("Inicio.InicioUltimoAcceso") + "<br>" + formato.format(new Date()) + "</html>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		GridBagConstraints gbc_lblInfo = new GridBagConstraints();
 		gbc_lblInfo.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblInfo.insets = new Insets(0, 0, 5, 5);
@@ -121,8 +121,8 @@ public class Inicio {
 		gbc_lblInfo.gridy = 0;
 		panel.add(lblInfo, gbc_lblInfo);
 		
-				btnClientesVip = new JButton("Clientes VIP");
-				btnClientesVip.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/star.png")));
+				btnClientesVip = new JButton(MessagesInicio.getString("Inicio.btnClientesVip.text")); //$NON-NLS-1$
+				btnClientesVip.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/star.png"))); //$NON-NLS-1$
 				btnClientesVip.addActionListener(new BtnClientesVipActionListener());
 				GridBagConstraints gbc_btnClientesVip = new GridBagConstraints();
 				gbc_btnClientesVip.gridwidth = 2;
@@ -132,9 +132,9 @@ public class Inicio {
 				gbc_btnClientesVip.gridy = 1;
 				panel.add(btnClientesVip, gbc_btnClientesVip);
 		
-				btnProductos = new JButton("Productos");
+				btnProductos = new JButton(MessagesInicio.getString("Inicio.btnProductos.text")); //$NON-NLS-1$
 				btnProductos
-						.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/shopping-cart-black-shape (1).png")));
+						.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/shopping-cart-black-shape (1).png"))); //$NON-NLS-1$
 				btnProductos.addActionListener(new BtnProductosActionListener());
 				GridBagConstraints gbc_btnProductos = new GridBagConstraints();
 				gbc_btnProductos.gridwidth = 2;
@@ -144,17 +144,17 @@ public class Inicio {
 				gbc_btnProductos.gridy = 1;
 				panel.add(btnProductos, gbc_btnProductos);
 
-		btnReparto = new JButton("Reparto");
+		btnReparto = new JButton(MessagesInicio.getString("Inicio.btnReparto.text")); //$NON-NLS-1$
 		btnReparto.addActionListener(new BtnRepartoActionListener());
-		btnReparto.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/scooter.png")));
+		btnReparto.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/scooter.png"))); //$NON-NLS-1$
 		btnReparto.addActionListener(new BtnRepartoActionListener());
 		
-				btnOfertasYMens = new JButton("Ofertas y menús");
-				btnOfertasYMens.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/tag.png")));
+				btnOfertasYMens = new JButton(MessagesInicio.getString("Inicio.btnOfertasYMens.text")); //$NON-NLS-1$
+				btnOfertasYMens.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/tag.png"))); //$NON-NLS-1$
 				btnOfertasYMens.addActionListener(new BtnOfertasYMensActionListener());
 				
-						btnPedidos = new JButton("Pedidos");
-						btnPedidos.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/shopping-list.png")));
+						btnPedidos = new JButton(MessagesInicio.getString("Inicio.btnPedidos.text")); //$NON-NLS-1$
+						btnPedidos.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/shopping-list.png"))); //$NON-NLS-1$
 						btnPedidos.addActionListener(new BtnPedidosActionListener());
 						GridBagConstraints gbc_btnPedidos = new GridBagConstraints();
 						gbc_btnPedidos.gridwidth = 2;
@@ -178,8 +178,8 @@ public class Inicio {
 		gbc_btnReparto.gridy = 3;
 		panel.add(btnReparto, gbc_btnReparto);
 
-		btnCerrarSesin = new JButton("Cerrar sesión");
-		btnCerrarSesin.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/sign-out-option.png")));
+		btnCerrarSesin = new JButton(MessagesInicio.getString("Inicio.btnCerrarSesin.text")); //$NON-NLS-1$
+		btnCerrarSesin.setIcon(new ImageIcon(Inicio.class.getResource("/Presentacion/sign-out-option.png"))); //$NON-NLS-1$
 		btnCerrarSesin.addActionListener(new BtnCerrarSesinActionListener());
 		GridBagConstraints gbc_btnCerrarSesin = new GridBagConstraints();
 		gbc_btnCerrarSesin.insets = new Insets(0, 0, 0, 5);
@@ -192,34 +192,29 @@ public class Inicio {
 		menuBar = new JMenuBar();
 		frmInicio.setJMenuBar(menuBar);
 
-		mnIdioma = new JMenu("Idioma");
-		menuBar.add(mnIdioma);
-
-		rdbtnmntmEspaol = new JRadioButtonMenuItem("Español");
-		buttonGroup.add(rdbtnmntmEspaol);
-		mnIdioma.add(rdbtnmntmEspaol);
-
-		rdbtnmntmIngls = new JRadioButtonMenuItem("Inglés");
-		buttonGroup.add(rdbtnmntmIngls);
-		mnIdioma.add(rdbtnmntmIngls);
-
-		mnFuente = new JMenu("Fuente");
+		mnFuente = new JMenu(MessagesInicio.getString("Inicio.mnFuente.text")); //$NON-NLS-1$
 		menuBar.add(mnFuente);
 
-		rdbtnmntmPequea = new JRadioButtonMenuItem("Pequeña");
+		rdbtnmntmPequea = new JRadioButtonMenuItem(MessagesInicio.getString("Inicio.rdbtnmntmPequea.text")); //$NON-NLS-1$
 		buttonGroup_1.add(rdbtnmntmPequea);
 		mnFuente.add(rdbtnmntmPequea);
 
-		rdbtnmntmNormal = new JRadioButtonMenuItem("Normal");
+		rdbtnmntmNormal = new JRadioButtonMenuItem(MessagesInicio.getString("Inicio.rdbtnmntmNormal.text")); //$NON-NLS-1$
 		buttonGroup_1.add(rdbtnmntmNormal);
 		mnFuente.add(rdbtnmntmNormal);
 
-		rdbtnmntmGrande = new JRadioButtonMenuItem("Grande");
+		rdbtnmntmGrande = new JRadioButtonMenuItem(MessagesInicio.getString("Inicio.rdbtnmntmGrande.text")); //$NON-NLS-1$
 		buttonGroup_1.add(rdbtnmntmGrande);
 		mnFuente.add(rdbtnmntmGrande);
 
-		mnAyuda = new JMenu("Ayuda");
+		mnAyuda = new JMenu(MessagesInicio.getString("Inicio.mnAyuda.text")); //$NON-NLS-1$
 		menuBar.add(mnAyuda);
+		
+		mntmAyuda = new JMenuItem(MessagesInicio.getString("Inicio.mntmAyuda.text")); //$NON-NLS-1$
+		mnAyuda.add(mntmAyuda);
+		
+		mntmAcercaDe = new JMenuItem(MessagesInicio.getString("Inicio.mntmAcercaDe.text")); //$NON-NLS-1$
+		mnAyuda.add(mntmAcercaDe);
 	}
 
 	private class BtnProductosActionListener implements ActionListener {
