@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
+import java.awt.Font;
 
 public class SeleccionIdioma extends JDialog {
 
@@ -38,23 +39,28 @@ public class SeleccionIdioma extends JDialog {
 	 * Create the dialog.
 	 */
 	public SeleccionIdioma() {
-		setBounds(100, 100, 577, 141);
+		setTitle("Selección Idioma");
+		setResizable(false);
+		setBounds(100, 100, 577, 126);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
 			JLabel lblSeleccioneElIdioma = new JLabel("Seleccione el idioma deseado: ");
+			lblSeleccioneElIdioma.setFont(new Font("Tahoma", Font.BOLD, 15));
 			contentPanel.add(lblSeleccioneElIdioma);
 		}
 		{
 			rdbtnEspaol = new JRadioButton("Español");
+			rdbtnEspaol.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			buttonGroup.add(rdbtnEspaol);
 			rdbtnEspaol.setIcon(new ImageIcon(SeleccionIdioma.class.getResource("/Presentacion/banderaEsp.gif")));
 			contentPanel.add(rdbtnEspaol);
 		}
 		{
 			rdbtnIngls = new JRadioButton("Inglés");
+			rdbtnIngls.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			buttonGroup.add(rdbtnIngls);
 			rdbtnIngls.setIcon(new ImageIcon(SeleccionIdioma.class.getResource("/Presentacion/banderaIng.gif")));
 			contentPanel.add(rdbtnIngls);
@@ -65,6 +71,7 @@ public class SeleccionIdioma extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 				okButton.addActionListener(new OkButtonActionListener());
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);

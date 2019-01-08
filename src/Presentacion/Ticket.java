@@ -19,6 +19,8 @@ import javax.swing.SwingConstants;
 import javax.swing.DropMode;
 import java.awt.Font;
 import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Ticket {
 
@@ -339,6 +341,7 @@ public class Ticket {
 		txtLeAtendio.setColumns(10);
 
 		btnImprimir = new JButton(MessagesTicket.getString("Ticket.btnImprimir.text")); //$NON-NLS-1$
+		btnImprimir.addActionListener(new BtnImprimirActionListener());
 		btnImprimir.setIcon(new ImageIcon(Ticket.class.getResource("/Presentacion/printer.png"))); //$NON-NLS-1$
 		GridBagConstraints gbc_btnImprimir = new GridBagConstraints();
 		gbc_btnImprimir.insets = new Insets(0, 0, 5, 5);
@@ -347,4 +350,9 @@ public class Ticket {
 		frmTicket.getContentPane().add(btnImprimir, gbc_btnImprimir);
 	}
 
+	private class BtnImprimirActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			frmTicket.dispose();
+		}
+	}
 }

@@ -78,12 +78,12 @@ public class Login {
 		panel.setLayout(null);
 
 		lblUsuario = new JLabel(MessagesLogin.getString("Login.lblUsuario.text")); //$NON-NLS-1$
-		lblUsuario.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblUsuario.setFont(new Font("Verdana", Font.PLAIN, 15)); //$NON-NLS-1$
 		lblUsuario.setBounds(93, 93, 87, 16);
 		panel.add(lblUsuario);
 
 		lblContrasea = new JLabel(MessagesLogin.getString("Login.lblContrasea.text")); //$NON-NLS-1$
-		lblContrasea.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblContrasea.setFont(new Font("Verdana", Font.PLAIN, 15)); //$NON-NLS-1$
 		lblContrasea.setBounds(93, 137, 97, 16);
 		panel.add(lblContrasea);
 
@@ -99,24 +99,24 @@ public class Login {
 		panel.add(passwordField);
 
 		btnEntrar = new JButton(MessagesLogin.getString("Login.btnEntrar.text")); //$NON-NLS-1$
-		btnEntrar.setIcon(new ImageIcon(Login.class.getResource("/Presentacion/sign-in.png")));
+		btnEntrar.setIcon(new ImageIcon(Login.class.getResource(MessagesLogin.getString("Login.2")))); //$NON-NLS-1$
 		btnEntrar.addActionListener(new BtnEntrarActionListener());
 		btnEntrar.setBounds(93, 202, 153, 54);
 		panel.add(btnEntrar);
 
 		btnLimpiar = new JButton(MessagesLogin.getString("Login.btnLimpiar.text")); //$NON-NLS-1$
-		btnLimpiar.setIcon(new ImageIcon(Login.class.getResource("/Presentacion/double-sided-eraser.png")));
+		btnLimpiar.setIcon(new ImageIcon(Login.class.getResource("/Presentacion/double-sided-eraser.png"))); //$NON-NLS-1$
 		btnLimpiar.addActionListener(new BtnLimpiarActionListener());
 		btnLimpiar.setBounds(264, 202, 153, 54);
 		panel.add(btnLimpiar);
 
 		lblTitulo = new JLabel(MessagesLogin.getString("Login.lblTitulo.text")); //$NON-NLS-1$
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setFont(new Font("Sitka Subheading", Font.BOLD, 18));
+		lblTitulo.setFont(new Font("Sitka Subheading", Font.BOLD, 18)); //$NON-NLS-1$
 		lblTitulo.setBounds(49, 23, 441, 46);
 		panel.add(lblTitulo);
 
-		lblAviso = new JLabel("");
+		lblAviso = new JLabel(""); //$NON-NLS-1$
 		lblAviso.setOpaque(true);
 		lblAviso.setBounds(93, 170, 324, 34);
 		panel.add(lblAviso);
@@ -125,24 +125,24 @@ public class Login {
 	private class BtnEntrarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
-			/*if (!(String.valueOf(tfUsuario.getText()).equals("admin"))
-					|| !(String.valueOf(passwordField.getPassword()).equals("admin"))) {
+			if (!(String.valueOf(tfUsuario.getText()).equals("admin")) //$NON-NLS-1$
+					|| !(String.valueOf(passwordField.getPassword()).equals("admin"))) { //$NON-NLS-1$
 				lblAviso.setForeground(Color.RED);
-				lblAviso.setText("Usuario o Contraseña incorrecto. Inténtelo de nuevo.");
+				lblAviso.setText(MessagesLogin.getString("Login.UsuarioCont")); //$NON-NLS-1$
 				lblAviso.setVisible(true);
 			} else {
 				new Inicio().getFrame().setVisible(true);
 				frameLogin.dispose();
-			}*/
-			new Inicio().getFrame().setVisible(true);
-			frameLogin.dispose();
+			}
+			/*new Inicio().getFrame().setVisible(true);
+			frameLogin.dispose();*/
 		}
 	}
 
 	private class BtnLimpiarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			tfUsuario.setText("");
-			passwordField.setText("");
+			tfUsuario.setText(""); //$NON-NLS-1$
+			passwordField.setText(""); //$NON-NLS-1$
 		}
 	}
 

@@ -79,6 +79,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.JToolBar;
+import javax.swing.JTextArea;
 
 public class Principal {
 
@@ -122,7 +123,6 @@ public class Principal {
 	private JTextField txtDireccion;
 	private JTextField txtCorreo;
 	private JComboBox comboBox;
-	private JTextField txtAlergenosC;
 	private JLabel lblImagen;
 	private JLabel lblFoto;
 	private JPanel tabPedidos;
@@ -151,7 +151,6 @@ public class Principal {
 	private JPanel pnlDetallesOf;
 	private JPanel pnlEnvioOf;
 	private JLabel lblDescripcin;
-	private JTextField txtDesc;
 	private JLabel lblValidaHasta;
 	private JButton btnEnviar;
 	private JButton btnEliminar_1;
@@ -172,7 +171,6 @@ public class Principal {
 	private JScrollPane scrollPane_4;
 	private JPanel panel_3;
 	private JLabel label;
-	private JTextField textField;
 	private JLabel lblPrecio_1;
 	private JFormattedTextField formattedTextField;
 	private JPanel panel_4;
@@ -279,6 +277,9 @@ public class Principal {
 	private JPanel pnlMenu;
 	private JPanel pnlOfertas;
 	private JTextField txtHoraentrega;
+	private JTextArea txtDescMenu;
+	private JTextArea txtDescOfertas;
+	private JTextArea txtAlergenosCl;
 
 	/**
 	 * Launch the application.
@@ -376,10 +377,10 @@ public class Principal {
 		gbc_panel.gridy = 1;
 		Clientes.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 88, 117, 51, 0, 49, 0, 0 };
+		gbl_panel.columnWidths = new int[] { 88, 117, 51, 150, 49, 68, 0 };
 		gbl_panel.rowHeights = new int[] { 52, 0, 0, 0, 0, 0, 0, 0, 0, 61, 0 };
 		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
-		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
 		lblImagen = new JLabel(""); //$NON-NLS-1$
@@ -537,7 +538,7 @@ public class Principal {
 		gbc_comboBox.gridx = 4;
 		gbc_comboBox.gridy = 7;
 		panel.add(comboBox, gbc_comboBox);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "No", "Vegetariano/a", "Vegano/a" })); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { "No", MessagesPrincipal.getString("Principal.ComboVegetar"), MessagesPrincipal.getString("Principal.ComboVegano") })); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		btnModificarFoto = new JButton(MessagesPrincipal.getString("Principal.btnModificarFoto.text")); //$NON-NLS-1$
 		btnModificarFoto.addActionListener(new BtnModificarFotoActionListener());
@@ -552,23 +553,24 @@ public class Principal {
 
 		lblAlrgenos_1 = new JLabel(MessagesPrincipal.getString("Principal.lblAlrgenos_1.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblAlrgenos_1 = new GridBagConstraints();
-		gbc_lblAlrgenos_1.anchor = GridBagConstraints.WEST;
+		gbc_lblAlrgenos_1.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblAlrgenos_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAlrgenos_1.gridx = 3;
 		gbc_lblAlrgenos_1.gridy = 8;
 		panel.add(lblAlrgenos_1, gbc_lblAlrgenos_1);
-
-		txtAlergenosC = new JTextField();
-		txtAlergenosC.setText("Intolerante a la lactosa"); //$NON-NLS-1$
-		GridBagConstraints gbc_txtAlergenosC = new GridBagConstraints();
-		gbc_txtAlergenosC.fill = GridBagConstraints.BOTH;
-		gbc_txtAlergenosC.gridwidth = 2;
-		gbc_txtAlergenosC.gridheight = 2;
-		gbc_txtAlergenosC.gridx = 4;
-		gbc_txtAlergenosC.gridy = 8;
-		panel.add(txtAlergenosC, gbc_txtAlergenosC);
-		txtAlergenosC.setHorizontalAlignment(SwingConstants.LEFT);
-		txtAlergenosC.setColumns(10);
+		
+		txtAlergenosCl = new JTextArea();
+		txtAlergenosCl.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtAlergenosCl.setLineWrap(true);
+		txtAlergenosCl.setWrapStyleWord(true);
+		txtAlergenosCl.setText(MessagesPrincipal.getString("Principal.textAlergenosCl.text")); //$NON-NLS-1$
+		GridBagConstraints gbc_txtAlergenosCl = new GridBagConstraints();
+		gbc_txtAlergenosCl.gridheight = 2;
+		gbc_txtAlergenosCl.insets = new Insets(0, 0, 5, 5);
+		gbc_txtAlergenosCl.fill = GridBagConstraints.BOTH;
+		gbc_txtAlergenosCl.gridx = 4;
+		gbc_txtAlergenosCl.gridy = 8;
+		panel.add(txtAlergenosCl, gbc_txtAlergenosCl);
 
 		btnAadirClienteVip = new JButton(MessagesPrincipal.getString("Principal.btnAadirClienteVip.text")); //$NON-NLS-1$
 		btnAadirClienteVip.setIcon(new ImageIcon(Principal.class.getResource("/Presentacion/add.png"))); //$NON-NLS-1$
@@ -1247,6 +1249,7 @@ public class Principal {
 		panel_3.add(lblNombre_2, gbc_lblNombre_2);
 
 		txtNombreMenus = new JTextField();
+		txtNombreMenus.setText(MessagesPrincipal.getString("Principal.txtNombreMenus.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_txtNombreMenus = new GridBagConstraints();
 		gbc_txtNombreMenus.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtNombreMenus.insets = new Insets(0, 0, 5, 0);
@@ -1262,15 +1265,18 @@ public class Principal {
 		gbc_label.gridx = 0;
 		gbc_label.gridy = 2;
 		panel_3.add(label, gbc_label);
-
-		textField = new JTextField();
-		textField.setColumns(10);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.fill = GridBagConstraints.BOTH;
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.gridx = 0;
-		gbc_textField.gridy = 3;
-		panel_3.add(textField, gbc_textField);
+		
+		txtDescMenu = new JTextArea();
+		txtDescMenu.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtDescMenu.setLineWrap(true);
+		txtDescMenu.setWrapStyleWord(true);
+		txtDescMenu.setText(MessagesPrincipal.getString("Principal.textArea.text")); //$NON-NLS-1$
+		GridBagConstraints gbc_txtDescMenu = new GridBagConstraints();
+		gbc_txtDescMenu.insets = new Insets(0, 0, 5, 0);
+		gbc_txtDescMenu.fill = GridBagConstraints.BOTH;
+		gbc_txtDescMenu.gridx = 0;
+		gbc_txtDescMenu.gridy = 3;
+		panel_3.add(txtDescMenu, gbc_txtDescMenu);
 
 		lblPrecio_1 = new JLabel(MessagesPrincipal.getString("Principal.lblPrecio_1.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblPrecio_1 = new GridBagConstraints();
@@ -1281,6 +1287,7 @@ public class Principal {
 		panel_3.add(lblPrecio_1, gbc_lblPrecio_1);
 
 		formattedTextField = new JFormattedTextField();
+		formattedTextField.setText(MessagesPrincipal.getString("Principal.formattedTextField.text")); //$NON-NLS-1$
 		formattedTextField.setPreferredSize(new Dimension(6, 10));
 		formattedTextField.setMinimumSize(new Dimension(6, 10));
 		GridBagConstraints gbc_formattedTextField = new GridBagConstraints();
@@ -1490,6 +1497,7 @@ public class Principal {
 		pnlDetallesOf.add(lblNombre_1, gbc_lblNombre_1);
 
 		txtNombreOf = new JTextField();
+		txtNombreOf.setText(MessagesPrincipal.getString("Principal.txtNombreOf.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_txtNombreOf = new GridBagConstraints();
 		gbc_txtNombreOf.insets = new Insets(0, 0, 5, 0);
 		gbc_txtNombreOf.fill = GridBagConstraints.HORIZONTAL;
@@ -1505,15 +1513,18 @@ public class Principal {
 		gbc_lblDescripcin.gridx = 0;
 		gbc_lblDescripcin.gridy = 2;
 		pnlDetallesOf.add(lblDescripcin, gbc_lblDescripcin);
-
-		txtDesc = new JTextField();
-		GridBagConstraints gbc_txtDesc = new GridBagConstraints();
-		gbc_txtDesc.fill = GridBagConstraints.BOTH;
-		gbc_txtDesc.insets = new Insets(0, 0, 5, 0);
-		gbc_txtDesc.gridx = 0;
-		gbc_txtDesc.gridy = 3;
-		pnlDetallesOf.add(txtDesc, gbc_txtDesc);
-		txtDesc.setColumns(10);
+		
+		txtDescOfertas = new JTextArea();
+		txtDescOfertas.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtDescOfertas.setLineWrap(true);
+		txtDescOfertas.setWrapStyleWord(true);
+		txtDescOfertas.setText(MessagesPrincipal.getString("Principal.txtDesc.text")); //$NON-NLS-1$
+		GridBagConstraints gbc_txtDescOfertas = new GridBagConstraints();
+		gbc_txtDescOfertas.insets = new Insets(0, 0, 5, 0);
+		gbc_txtDescOfertas.fill = GridBagConstraints.BOTH;
+		gbc_txtDescOfertas.gridx = 0;
+		gbc_txtDescOfertas.gridy = 3;
+		pnlDetallesOf.add(txtDescOfertas, gbc_txtDescOfertas);
 
 		lblValidaHasta = new JLabel(MessagesPrincipal.getString("Principal.lblValidaHasta.text")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblValidaHasta = new GridBagConstraints();
